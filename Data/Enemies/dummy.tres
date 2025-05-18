@@ -1,0 +1,61 @@
+[gd_resource type="Resource" script_class="CharacterData" load_steps=10 format=3 uid="uid://ck5x4dmlarbd6"]
+
+[ext_resource type="Script" uid="uid://dev3bbs8234ul" path="res://AttackData.gd" id="1_dyswg"]
+[ext_resource type="Script" uid="uid://nf1cqa55mvbc" path="res://CharacterData.gd" id="2_6nr52"]
+[ext_resource type="Script" uid="uid://w7xci5q84hvk" path="res://Data/Stat.gd" id="2_qthsa"]
+
+[sub_resource type="Resource" id="Resource_uk51j"]
+script = ExtResource("2_qthsa")
+value = 9999.0
+default = 9999.0
+mod = 1.0
+metadata/_custom_type_script = "uid://w7xci5q84hvk"
+
+[sub_resource type="Resource" id="Resource_1025m"]
+script = ExtResource("2_qthsa")
+value = 100.0
+default = 100.0
+mod = 1.0
+metadata/_custom_type_script = "uid://w7xci5q84hvk"
+
+[sub_resource type="Resource" id="Resource_vp4wv"]
+script = ExtResource("2_qthsa")
+value = 100.0
+default = 100.0
+mod = 1.0
+metadata/_custom_type_script = "uid://w7xci5q84hvk"
+
+[sub_resource type="Resource" id="Resource_walod"]
+script = ExtResource("2_qthsa")
+value = 100.0
+default = 100.0
+mod = 1.0
+metadata/_custom_type_script = "uid://w7xci5q84hvk"
+
+[sub_resource type="Resource" id="Resource_vvdpc"]
+script = ExtResource("2_qthsa")
+value = 100.0
+default = 100.0
+mod = 1.0
+metadata/_custom_type_script = "uid://w7xci5q84hvk"
+
+[sub_resource type="Resource" id="Resource_ed3c1"]
+script = ExtResource("2_qthsa")
+value = 100.0
+default = 100.0
+mod = 1.0
+metadata/_custom_type_script = "uid://w7xci5q84hvk"
+
+[resource]
+script = ExtResource("2_6nr52")
+id = "dummy"
+name = "Dummy"
+team = false
+hp = SubResource("Resource_uk51j")
+normal_attack = SubResource("Resource_1025m")
+special_attack = SubResource("Resource_walod")
+normal_defence = SubResource("Resource_vp4wv")
+special_defence = SubResource("Resource_vvdpc")
+speed = SubResource("Resource_ed3c1")
+attacks = Array[ExtResource("1_dyswg")]([])
+metadata/_custom_type_script = "uid://nf1cqa55mvbc"

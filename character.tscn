@@ -1,0 +1,120 @@
+[gd_scene load_steps=11 format=3 uid="uid://d26jdwk2oi2rp"]
+
+[ext_resource type="Texture2D" uid="uid://b3wfynj52ybqs" path="res://Stick2.png" id="1_glpr6"]
+[ext_resource type="Script" uid="uid://dr2esifhd0rlm" path="res://CharacterSprite.gd" id="1_wa5vi"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_glpr6"]
+viewport_path = NodePath("Node/SubViewport")
+
+[sub_resource type="Animation" id="Animation_pjt0s"]
+length = 0.001
+tracks/0/type = "scale_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 1, 1, 1)
+
+[sub_resource type="Animation" id="Animation_glpr6"]
+resource_name = "Scale"
+length = 0.1
+tracks/0/type = "scale_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 1, 1, 1, 0.1, 1, 1.5, 1.5, 1.5)
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 3, 3, 1, 0.1, 1, 4.5, 4.5, 1.5)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pjt0s"]
+_data = {
+&"RESET": SubResource("Animation_pjt0s"),
+&"Scale": SubResource("Animation_glpr6")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_glpr6"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_glpr6"]
+font_size = 64
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pjt0s"]
+bg_color = Color(0.964706, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wfnr8"]
+bg_color = Color(0.878431, 0.486275, 0, 1)
+
+[node name="Character" type="Node3D"]
+script = ExtResource("1_wa5vi")
+
+[node name="Sprite3D4" type="Sprite3D" parent="."]
+transform = Transform3D(1.00169, 0, 0, 0, 1.00169, 0, 0, 0, 1.00169, 0, 4, 0)
+flip_h = true
+texture = ExtResource("1_glpr6")
+
+[node name="UI" type="Sprite3D" parent="."]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 3, 3, 1)
+texture = SubResource("ViewportTexture_glpr6")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI"]
+libraries = {
+&"": SubResource("AnimationLibrary_pjt0s")
+}
+
+[node name="Node" type="Node" parent="."]
+
+[node name="SubViewport" type="SubViewport" parent="Node"]
+own_world_3d = true
+transparent_bg = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Node/SubViewport"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -120.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 2
+
+[node name="Attacks" type="VBoxContainer" parent="Node/SubViewport/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="Node/SubViewport/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_styles/panel = SubResource("StyleBoxFlat_glpr6")
+
+[node name="MarginContainer" type="MarginContainer" parent="Node/SubViewport/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_right = 10
+
+[node name="Label" type="Label" parent="Node/SubViewport/VBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+text = "What the test"
+label_settings = SubResource("LabelSettings_glpr6")
+
+[node name="HPBar" type="ProgressBar" parent="Node/SubViewport/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_pjt0s")
+value = 50.0
+show_percentage = false
+
+[node name="Timebar" type="ProgressBar" parent="Node/SubViewport/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_wfnr8")
+show_percentage = false

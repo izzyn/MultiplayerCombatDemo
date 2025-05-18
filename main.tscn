@@ -1,0 +1,672 @@
+[gd_scene load_steps=88 format=3 uid="uid://cqrjaicj4lgbm"]
+
+[ext_resource type="PackedScene" uid="uid://d26jdwk2oi2rp" path="res://character.tscn" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://waulf1wnbmcm" path="res://Controller.gd" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://dev3bbs8234ul" path="res://AttackData.gd" id="2_5vw27"]
+[ext_resource type="Script" uid="uid://chal40igpet32" path="res://Data/Effect/Effect.gd" id="3_kek77"]
+[ext_resource type="Script" uid="uid://b02gidehqotp1" path="res://Data/Effect/StatChange.gd" id="4_4c57u"]
+[ext_resource type="Script" uid="uid://d0jjmkvmmnkcq" path="res://Camera.gd" id="5_4c57u"]
+[ext_resource type="Script" uid="uid://xspn7atwwsb3" path="res://Data/Filters/FilterTeam.gd" id="5_efxa6"]
+[ext_resource type="Script" uid="uid://w7xci5q84hvk" path="res://Data/Stat.gd" id="6_dg77c"]
+[ext_resource type="Script" uid="uid://nf1cqa55mvbc" path="res://CharacterData.gd" id="7_ycdy4"]
+[ext_resource type="PackedScene" uid="uid://bkivihrkixbmx" path="res://Selection.tscn" id="9_kek77"]
+
+[sub_resource type="Resource" id="Resource_5vw27"]
+script = ExtResource("6_dg77c")
+value = 100.0
+default = 100.0
+mod = 1.0
+metadata/_custom_type_script = "uid://w7xci5q84hvk"
+
+[sub_resource type="Resource" id="Resource_kek77"]
+script = ExtResource("6_dg77c")
+value = 100.0
+default = 100.0
+mod = 1.0
+metadata/_custom_type_script = "uid://w7xci5q84hvk"
+
+[sub_resource type="Resource" id="Resource_4c57u"]
+script = ExtResource("6_dg77c")
+value = 100.0
+default = 100.0
+mod = 1.0
+metadata/_custom_type_script = "uid://w7xci5q84hvk"
+
+[sub_resource type="Resource" id="Resource_efxa6"]
+script = ExtResource("6_dg77c")
+value = 100.0
+default = 100.0
+mod = 1.0
+metadata/_custom_type_script = "uid://w7xci5q84hvk"
+
+[sub_resource type="Resource" id="Resource_dg77c"]
+script = ExtResource("6_dg77c")
+value = 100.0
+default = 100.0
+mod = 1.0
+metadata/_custom_type_script = "uid://w7xci5q84hvk"
+
+[sub_resource type="Resource" id="Resource_ycdy4"]
+script = ExtResource("6_dg77c")
+value = 100.0
+default = 100.0
+mod = 1.0
+metadata/_custom_type_script = "uid://w7xci5q84hvk"
+
+[sub_resource type="Resource" id="Resource_0cp0l"]
+script = ExtResource("7_ycdy4")
+id = "dummy"
+name = "Dummy"
+team = false
+hp = SubResource("Resource_5vw27")
+normal_attack = SubResource("Resource_kek77")
+special_attack = SubResource("Resource_efxa6")
+normal_defence = SubResource("Resource_4c57u")
+special_defence = SubResource("Resource_dg77c")
+speed = SubResource("Resource_ycdy4")
+attacks = Array[ExtResource("2_5vw27")]([])
+metadata/_custom_type_script = "uid://nf1cqa55mvbc"
+
+[sub_resource type="Resource" id="Resource_d2t1y"]
+script = ExtResource("6_dg77c")
+value = 100.0
+default = 100.0
+mod = 1.0
+metadata/_custom_type_script = "uid://w7xci5q84hvk"
+
+[sub_resource type="Resource" id="Resource_gngh3"]
+script = ExtResource("6_dg77c")
+value = 100.0
+default = 100.0
+mod = 1.0
+metadata/_custom_type_script = "uid://w7xci5q84hvk"
+
+[sub_resource type="Resource" id="Resource_0n3wm"]
+script = ExtResource("6_dg77c")
+value = 100.0
+default = 100.0
+mod = 1.0
+metadata/_custom_type_script = "uid://w7xci5q84hvk"
+
+[sub_resource type="Resource" id="Resource_qnost"]
+script = ExtResource("6_dg77c")
+value = 100.0
+default = 100.0
+mod = 1.0
+metadata/_custom_type_script = "uid://w7xci5q84hvk"
+
+[sub_resource type="Resource" id="Resource_wnkbs"]
+script = ExtResource("6_dg77c")
+value = 100.0
+default = 100.0
+mod = 1.0
+metadata/_custom_type_script = "uid://w7xci5q84hvk"
+
+[sub_resource type="Resource" id="Resource_f6a44"]
+script = ExtResource("6_dg77c")
+value = 100.0
+default = 100.0
+mod = 1.0
+metadata/_custom_type_script = "uid://w7xci5q84hvk"
+
+[sub_resource type="Resource" id="Resource_0cbny"]
+script = ExtResource("7_ycdy4")
+id = "dummy"
+name = "Dummy"
+team = false
+hp = SubResource("Resource_d2t1y")
+normal_attack = SubResource("Resource_gngh3")
+special_attack = SubResource("Resource_qnost")
+normal_defence = SubResource("Resource_0n3wm")
+special_defence = SubResource("Resource_wnkbs")
+speed = SubResource("Resource_f6a44")
+attacks = Array[ExtResource("2_5vw27")]([])
+metadata/_custom_type_script = "uid://nf1cqa55mvbc"
+
+[sub_resource type="Resource" id="Resource_hrvbo"]
+script = ExtResource("6_dg77c")
+value = 100.0
+default = 100.0
+mod = 1.0
+metadata/_custom_type_script = "uid://w7xci5q84hvk"
+
+[sub_resource type="Resource" id="Resource_uypp3"]
+script = ExtResource("6_dg77c")
+value = 100.0
+default = 100.0
+mod = 1.0
+metadata/_custom_type_script = "uid://w7xci5q84hvk"
+
+[sub_resource type="Resource" id="Resource_blkrb"]
+script = ExtResource("6_dg77c")
+value = 100.0
+default = 100.0
+mod = 1.0
+metadata/_custom_type_script = "uid://w7xci5q84hvk"
+
+[sub_resource type="Resource" id="Resource_abqjc"]
+script = ExtResource("6_dg77c")
+value = 100.0
+default = 100.0
+mod = 1.0
+metadata/_custom_type_script = "uid://w7xci5q84hvk"
+
+[sub_resource type="Resource" id="Resource_6iyjs"]
+script = ExtResource("6_dg77c")
+value = 100.0
+default = 100.0
+mod = 1.0
+metadata/_custom_type_script = "uid://w7xci5q84hvk"
+
+[sub_resource type="Resource" id="Resource_4w656"]
+script = ExtResource("6_dg77c")
+value = 100.0
+default = 100.0
+mod = 1.0
+metadata/_custom_type_script = "uid://w7xci5q84hvk"
+
+[sub_resource type="Resource" id="Resource_e71vb"]
+script = ExtResource("7_ycdy4")
+id = "dummy"
+name = "Dummy"
+team = false
+hp = SubResource("Resource_hrvbo")
+normal_attack = SubResource("Resource_uypp3")
+special_attack = SubResource("Resource_abqjc")
+normal_defence = SubResource("Resource_blkrb")
+special_defence = SubResource("Resource_6iyjs")
+speed = SubResource("Resource_4w656")
+attacks = Array[ExtResource("2_5vw27")]([])
+metadata/_custom_type_script = "uid://nf1cqa55mvbc"
+
+[sub_resource type="Resource" id="Resource_rnkwl"]
+script = ExtResource("6_dg77c")
+value = 100.0
+default = 100.0
+mod = 1.0
+metadata/_custom_type_script = "uid://w7xci5q84hvk"
+
+[sub_resource type="Resource" id="Resource_vke2r"]
+script = ExtResource("6_dg77c")
+value = 100.0
+default = 100.0
+mod = 1.0
+metadata/_custom_type_script = "uid://w7xci5q84hvk"
+
+[sub_resource type="Resource" id="Resource_uit24"]
+script = ExtResource("6_dg77c")
+value = 100.0
+default = 100.0
+mod = 1.0
+metadata/_custom_type_script = "uid://w7xci5q84hvk"
+
+[sub_resource type="Resource" id="Resource_ruth0"]
+script = ExtResource("6_dg77c")
+value = 100.0
+default = 100.0
+mod = 1.0
+metadata/_custom_type_script = "uid://w7xci5q84hvk"
+
+[sub_resource type="Resource" id="Resource_rm4vd"]
+script = ExtResource("6_dg77c")
+value = 100.0
+default = 100.0
+mod = 1.0
+metadata/_custom_type_script = "uid://w7xci5q84hvk"
+
+[sub_resource type="Resource" id="Resource_pjyto"]
+script = ExtResource("6_dg77c")
+value = 100.0
+default = 100.0
+mod = 1.0
+metadata/_custom_type_script = "uid://w7xci5q84hvk"
+
+[sub_resource type="Resource" id="Resource_sm6fg"]
+script = ExtResource("7_ycdy4")
+id = "dummy"
+name = "Dummy"
+team = false
+hp = SubResource("Resource_rnkwl")
+normal_attack = SubResource("Resource_vke2r")
+special_attack = SubResource("Resource_ruth0")
+normal_defence = SubResource("Resource_uit24")
+special_defence = SubResource("Resource_rm4vd")
+speed = SubResource("Resource_pjyto")
+attacks = Array[ExtResource("2_5vw27")]([])
+metadata/_custom_type_script = "uid://nf1cqa55mvbc"
+
+[sub_resource type="Gradient" id="Gradient_ig7tw"]
+colors = PackedColorArray(0.0711053, 0.428157, 0, 1, 0.0862745, 1, 0.0431373, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_7dm0k"]
+noise_type = 3
+fractal_octaves = 10
+fractal_gain = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ig7tw"]
+color_ramp = SubResource("Gradient_ig7tw")
+noise = SubResource("FastNoiseLite_7dm0k")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7dm0k"]
+albedo_color = Color(0.22543, 0.50422, 0.290939, 1)
+albedo_texture = SubResource("NoiseTexture2D_ig7tw")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ig7tw"]
+material = SubResource("StandardMaterial3D_7dm0k")
+size = Vector2(200, 40)
+
+[sub_resource type="Gradient" id="Gradient_7dm0k"]
+colors = PackedColorArray(0.00493456, 0.228804, 0.999991, 0.905882, 0.10549, 0.999176, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ig7tw"]
+gradient = SubResource("Gradient_7dm0k")
+fill_from = Vector2(0.5, 0.3)
+fill_to = Vector2(0.5, 1)
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_0xm2m"]
+panorama = SubResource("GradientTexture2D_ig7tw")
+
+[sub_resource type="Sky" id="Sky_h2yge"]
+sky_material = SubResource("PanoramaSkyMaterial_0xm2m")
+
+[sub_resource type="Environment" id="Environment_7dm0k"]
+background_mode = 2
+background_color = Color(0, 0, 0.270588, 1)
+sky = SubResource("Sky_h2yge")
+ambient_light_source = 3
+ambient_light_color = Color(0.206035, 0.434083, 1, 1)
+
+[sub_resource type="Resource" id="Resource_havpv"]
+script = ExtResource("4_4c57u")
+type = 0
+amount = -50.0
+exceed_default = false
+stat_name = "hp"
+metadata/_custom_type_script = "uid://b02gidehqotp1"
+
+[sub_resource type="Resource" id="Resource_jjsfv"]
+script = ExtResource("5_efxa6")
+inverted = true
+metadata/_custom_type_script = "uid://xspn7atwwsb3"
+
+[sub_resource type="Resource" id="Resource_xcirw"]
+script = ExtResource("2_5vw27")
+id = "slap"
+name = "Slap"
+type = 2
+stat = 0
+base_ai_weight = 10.0
+hits_all = false
+can_target_multiple_times = false
+cooldown = 5.0
+targets = 2
+target = SubResource("Resource_jjsfv")
+effects = Array[ExtResource("3_kek77")]([SubResource("Resource_havpv")])
+metadata/_custom_type_script = "uid://dev3bbs8234ul"
+
+[sub_resource type="Resource" id="Resource_uatky"]
+script = ExtResource("4_4c57u")
+type = 0
+amount = 1000.0
+exceed_default = true
+stat_name = "speed"
+metadata/_custom_type_script = "uid://b02gidehqotp1"
+
+[sub_resource type="Resource" id="Resource_ntx8l"]
+script = ExtResource("5_efxa6")
+inverted = false
+metadata/_custom_type_script = "uid://xspn7atwwsb3"
+
+[sub_resource type="Resource" id="Resource_b17eg"]
+script = ExtResource("2_5vw27")
+id = "slap2"
+name = "Motivating Slap"
+type = 2
+stat = 0
+base_ai_weight = 10.0
+hits_all = false
+can_target_multiple_times = false
+cooldown = 5.0
+targets = 1
+target = SubResource("Resource_ntx8l")
+effects = Array[ExtResource("3_kek77")]([SubResource("Resource_uatky")])
+metadata/_custom_type_script = "uid://dev3bbs8234ul"
+
+[sub_resource type="Resource" id="Resource_1vm84"]
+script = ExtResource("4_4c57u")
+type = 0
+amount = -100.0
+exceed_default = false
+stat_name = "hp"
+metadata/_custom_type_script = "uid://b02gidehqotp1"
+
+[sub_resource type="Resource" id="Resource_wu3dr"]
+script = ExtResource("5_efxa6")
+inverted = true
+metadata/_custom_type_script = "uid://xspn7atwwsb3"
+
+[sub_resource type="Resource" id="Resource_rqtf5"]
+script = ExtResource("2_5vw27")
+id = "bigboom"
+name = "Big Boom"
+type = 2
+stat = 0
+base_ai_weight = 10.0
+hits_all = true
+can_target_multiple_times = false
+cooldown = 50.0
+targets = 1
+target = SubResource("Resource_wu3dr")
+effects = Array[ExtResource("3_kek77")]([SubResource("Resource_1vm84")])
+metadata/_custom_type_script = "uid://dev3bbs8234ul"
+
+[sub_resource type="Resource" id="Resource_w48qg"]
+script = ExtResource("6_dg77c")
+value = 100.0
+default = 100.0
+mod = 1.0
+metadata/_custom_type_script = "uid://w7xci5q84hvk"
+
+[sub_resource type="Resource" id="Resource_vivmo"]
+script = ExtResource("6_dg77c")
+value = 100.0
+default = 100.0
+mod = 1.0
+metadata/_custom_type_script = "uid://w7xci5q84hvk"
+
+[sub_resource type="Resource" id="Resource_2cqfq"]
+script = ExtResource("6_dg77c")
+value = 100.0
+default = 100.0
+mod = 1.0
+metadata/_custom_type_script = "uid://w7xci5q84hvk"
+
+[sub_resource type="Resource" id="Resource_yaehf"]
+script = ExtResource("6_dg77c")
+value = 100.0
+default = 100.0
+mod = 1.0
+metadata/_custom_type_script = "uid://w7xci5q84hvk"
+
+[sub_resource type="Resource" id="Resource_074og"]
+script = ExtResource("6_dg77c")
+value = 100.0
+default = 100.0
+mod = 1.0
+metadata/_custom_type_script = "uid://w7xci5q84hvk"
+
+[sub_resource type="Resource" id="Resource_cegan"]
+script = ExtResource("6_dg77c")
+value = 100.0
+default = 100.0
+mod = 1.0
+metadata/_custom_type_script = "uid://w7xci5q84hvk"
+
+[sub_resource type="Resource" id="Resource_82xsv"]
+script = ExtResource("7_ycdy4")
+id = "testchar"
+name = "Test Character"
+team = true
+hp = SubResource("Resource_w48qg")
+normal_attack = SubResource("Resource_vivmo")
+special_attack = SubResource("Resource_yaehf")
+normal_defence = SubResource("Resource_2cqfq")
+special_defence = SubResource("Resource_074og")
+speed = SubResource("Resource_cegan")
+attacks = Array[ExtResource("2_5vw27")]([SubResource("Resource_xcirw"), SubResource("Resource_b17eg"), SubResource("Resource_rqtf5")])
+metadata/_custom_type_script = "uid://nf1cqa55mvbc"
+
+[sub_resource type="Resource" id="Resource_getpj"]
+script = ExtResource("6_dg77c")
+value = 100.0
+default = 100.0
+mod = 1.0
+metadata/_custom_type_script = "uid://w7xci5q84hvk"
+
+[sub_resource type="Resource" id="Resource_ryguw"]
+script = ExtResource("6_dg77c")
+value = 100.0
+default = 100.0
+mod = 1.0
+metadata/_custom_type_script = "uid://w7xci5q84hvk"
+
+[sub_resource type="Resource" id="Resource_d13ii"]
+script = ExtResource("6_dg77c")
+value = 100.0
+default = 100.0
+mod = 1.0
+metadata/_custom_type_script = "uid://w7xci5q84hvk"
+
+[sub_resource type="Resource" id="Resource_1u8w0"]
+script = ExtResource("6_dg77c")
+value = 100.0
+default = 100.0
+mod = 1.0
+metadata/_custom_type_script = "uid://w7xci5q84hvk"
+
+[sub_resource type="Resource" id="Resource_0odxb"]
+script = ExtResource("6_dg77c")
+value = 100.0
+default = 100.0
+mod = 1.0
+metadata/_custom_type_script = "uid://w7xci5q84hvk"
+
+[sub_resource type="Resource" id="Resource_lswn8"]
+script = ExtResource("6_dg77c")
+value = 100.0
+default = 100.0
+mod = 1.0
+metadata/_custom_type_script = "uid://w7xci5q84hvk"
+
+[sub_resource type="Resource" id="Resource_a6jrf"]
+script = ExtResource("7_ycdy4")
+id = "testchar"
+name = "Test Character"
+team = true
+hp = SubResource("Resource_getpj")
+normal_attack = SubResource("Resource_ryguw")
+special_attack = SubResource("Resource_1u8w0")
+normal_defence = SubResource("Resource_d13ii")
+special_defence = SubResource("Resource_0odxb")
+speed = SubResource("Resource_lswn8")
+attacks = Array[ExtResource("2_5vw27")]([SubResource("Resource_xcirw")])
+metadata/_custom_type_script = "uid://nf1cqa55mvbc"
+
+[sub_resource type="Resource" id="Resource_xuqvo"]
+script = ExtResource("6_dg77c")
+value = 100.0
+default = 100.0
+mod = 1.0
+metadata/_custom_type_script = "uid://w7xci5q84hvk"
+
+[sub_resource type="Resource" id="Resource_qsp4k"]
+script = ExtResource("6_dg77c")
+value = 100.0
+default = 100.0
+mod = 1.0
+metadata/_custom_type_script = "uid://w7xci5q84hvk"
+
+[sub_resource type="Resource" id="Resource_kq58d"]
+script = ExtResource("6_dg77c")
+value = 100.0
+default = 100.0
+mod = 1.0
+metadata/_custom_type_script = "uid://w7xci5q84hvk"
+
+[sub_resource type="Resource" id="Resource_seu75"]
+script = ExtResource("6_dg77c")
+value = 100.0
+default = 100.0
+mod = 1.0
+metadata/_custom_type_script = "uid://w7xci5q84hvk"
+
+[sub_resource type="Resource" id="Resource_htxhm"]
+script = ExtResource("6_dg77c")
+value = 100.0
+default = 100.0
+mod = 1.0
+metadata/_custom_type_script = "uid://w7xci5q84hvk"
+
+[sub_resource type="Resource" id="Resource_jq2sk"]
+script = ExtResource("6_dg77c")
+value = 100.0
+default = 100.0
+mod = 1.0
+metadata/_custom_type_script = "uid://w7xci5q84hvk"
+
+[sub_resource type="Resource" id="Resource_4k2k6"]
+script = ExtResource("7_ycdy4")
+id = "testchar"
+name = "Test Character"
+team = true
+hp = SubResource("Resource_xuqvo")
+normal_attack = SubResource("Resource_qsp4k")
+special_attack = SubResource("Resource_seu75")
+normal_defence = SubResource("Resource_kq58d")
+special_defence = SubResource("Resource_htxhm")
+speed = SubResource("Resource_jq2sk")
+attacks = Array[ExtResource("2_5vw27")]([SubResource("Resource_xcirw")])
+metadata/_custom_type_script = "uid://nf1cqa55mvbc"
+
+[sub_resource type="Resource" id="Resource_0rl1p"]
+script = ExtResource("6_dg77c")
+value = 100.0
+default = 100.0
+mod = 1.0
+metadata/_custom_type_script = "uid://w7xci5q84hvk"
+
+[sub_resource type="Resource" id="Resource_ok6jj"]
+script = ExtResource("6_dg77c")
+value = 100.0
+default = 100.0
+mod = 1.0
+metadata/_custom_type_script = "uid://w7xci5q84hvk"
+
+[sub_resource type="Resource" id="Resource_facbu"]
+script = ExtResource("6_dg77c")
+value = 100.0
+default = 100.0
+mod = 1.0
+metadata/_custom_type_script = "uid://w7xci5q84hvk"
+
+[sub_resource type="Resource" id="Resource_b1qrp"]
+script = ExtResource("6_dg77c")
+value = 100.0
+default = 100.0
+mod = 1.0
+metadata/_custom_type_script = "uid://w7xci5q84hvk"
+
+[sub_resource type="Resource" id="Resource_come4"]
+script = ExtResource("6_dg77c")
+value = 100.0
+default = 100.0
+mod = 1.0
+metadata/_custom_type_script = "uid://w7xci5q84hvk"
+
+[sub_resource type="Resource" id="Resource_h8e4i"]
+script = ExtResource("6_dg77c")
+value = 100.0
+default = 100.0
+mod = 1.0
+metadata/_custom_type_script = "uid://w7xci5q84hvk"
+
+[sub_resource type="Resource" id="Resource_4lmeg"]
+script = ExtResource("7_ycdy4")
+id = "testchar"
+name = "Test Character"
+team = true
+hp = SubResource("Resource_0rl1p")
+normal_attack = SubResource("Resource_ok6jj")
+special_attack = SubResource("Resource_b1qrp")
+normal_defence = SubResource("Resource_facbu")
+special_defence = SubResource("Resource_come4")
+speed = SubResource("Resource_h8e4i")
+attacks = Array[ExtResource("2_5vw27")]([SubResource("Resource_xcirw")])
+metadata/_custom_type_script = "uid://nf1cqa55mvbc"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0xm2m"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h2yge"]
+bg_color = Color(0, 0, 0, 1)
+border_width_bottom = 10
+
+[node name="Main" type="Node3D"]
+
+[node name="Enemy" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Character" parent="Enemy" instance=ExtResource("1_0xm2m")]
+transform = Transform3D(1.00346, 0, 0, 0, 1.00346, 0, 0, 0, 1.00346, -10, 0, 7)
+character = SubResource("Resource_0cp0l")
+flipped_text = true
+char_name = "Opp1"
+
+[node name="Character2" parent="Enemy" instance=ExtResource("1_0xm2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 12)
+character = SubResource("Resource_0cbny")
+flipped_text = true
+char_name = "Opp2"
+
+[node name="Character3" parent="Enemy" instance=ExtResource("1_0xm2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, 16)
+character = SubResource("Resource_e71vb")
+flipped_text = true
+char_name = "Opp3"
+
+[node name="Character4" parent="Enemy" instance=ExtResource("1_0xm2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, 19)
+character = SubResource("Resource_sm6fg")
+flipped_text = true
+char_name = "Opp4"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.122833, -0.0601273, 20.1224)
+mesh = SubResource("PlaneMesh_ig7tw")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.999996, -0.000761348, -0.0026216, 0.00178364, -0.544784, 0.838575, -0.00206665, -0.838576, -0.544781, 0, 12.4747, 0.612432)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.999619, -0.0276076, 0, 0.0276076, 0.999619, 0, 11.647, 38.078)
+current = true
+script = ExtResource("5_4c57u")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_7dm0k")
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="Friendly" type="Node3D" parent="."]
+
+[node name="Character" parent="Friendly" instance=ExtResource("1_0xm2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 7)
+character = SubResource("Resource_82xsv")
+char_name = "Kanel"
+
+[node name="Character2" parent="Friendly" instance=ExtResource("1_0xm2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 12)
+character = SubResource("Resource_a6jrf")
+char_name = "Kex"
+
+[node name="Character3" parent="Friendly" instance=ExtResource("1_0xm2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, 16)
+character = SubResource("Resource_4k2k6")
+char_name = "Choklad"
+
+[node name="Character4" parent="Friendly" instance=ExtResource("1_0xm2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, 19)
+character = SubResource("Resource_4lmeg")
+char_name = "Citron"
+
+[node name="MainController" type="Node" parent="."]
+script = ExtResource("2_0xm2m")
+selected_box = SubResource("StyleBoxFlat_0xm2m")
+unselected_box = SubResource("StyleBoxFlat_h2yge")
+
+[node name="Selection" parent="." instance=ExtResource("9_kek77")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 10.105, 0, 7.11588)
+visible = false
+move_speed = 10.0
+
+[node name="Selections" type="Node3D" parent="."]
