@@ -24,6 +24,40 @@ var last_max_cooldown : float
 
 var cooldown : float
 
+# INTENT
+var intent_attack : int = 0
+var intent_targets : Array[CharacterSprite] = []
+
+func _get_intent():
+	var highest_weight = -1
+	for i in character.attacks:
+		var type_mult = 1
+		if character.playstyle == character.Playstyle.Attack:
+			if i.type == i.Type.Attack:
+				type_mult = 2
+			if i.type == i.Type.Debuff:
+				type_mult = 1.5
+			else:
+				type_mult = 1
+		elif character.playstyle == character.Playstyle.Buff:
+			if i.type == i.Type.Buff:
+				type_mult = 2
+			if i.type == i.Type.Debuff:
+				type_mult = 1.5
+			else:
+				type_mult = 1
+		elif character.playstyle == character.Playstyle.Debuff:
+			if i.type == i.Type.Debuff:
+				type_mult = 2
+			if i.type == i.Type.Attack:
+				type_mult = 1.5
+			else:
+				type_mult = 1
+		var weight = i.base_ai_weight * type_mult / i.cooldown
+	pass
+
+func _get_weights():
+	pass
 func _ready() -> void:
 	print(character.hp)
 	if flipped_text:
@@ -31,6 +65,8 @@ func _ready() -> void:
 	get_node("Node/SubViewport/VBoxContainer/PanelContainer/MarginContainer/Label").text = char_name
 	pass
 func _process(delta: float) -> void:
+	if intent_targets.size() == 0 and character:
+		_get_intent()
 	cooldown -= delta
 	if oldhp == -1:
 		oldhp=character.hp.value
