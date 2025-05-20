@@ -87,18 +87,12 @@ func activate_attack():
 	var attacks = actor.attacks
 	var attack : AttackData = attacks[selected_button]
 	print(attack.name)
-	var all_sprites : Array[CharacterSprite] = []
-	for i in get_node("../Friendly").get_children():
-		all_sprites.append(i)
-	for i in get_node("../Enemy").get_children():
-		all_sprites.append(i)
-	var all_data : Array[CharacterData] = [] 
-	for i in all_sprites:
-		all_data.append(i.character)
-	var filter_chars = attack.target.eval(actor, all_data)
+	var all_data = get_parent().get_all_characters()
+	var all_sprites = get_parent().get_all_sprites()
+	var filter_chars = attack.target_filter.eval(actor, all_data)
 	attack_target_list.clear()
 	attack_target_list.append_array(all_sprites.filter(func(x): return x.character in filter_chars))
-	remaining_choices = attack.targets
+	remaining_choices = attack.target_amount
 	if attack.hits_all:
 		for i in attack_target_list:
 			picked_targets.append(i)

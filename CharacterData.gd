@@ -19,16 +19,19 @@ var hp : Stat
 var normal_attack : Stat
 
 @export
-var special_attack : Stat
+var magic_attack : Stat
 
 @export
 var normal_defence : Stat
 
 @export
-var special_defence : Stat
+var magic_defence : Stat
 
 @export
 var speed : Stat
+
+@export
+var targetability_factor : float = 1
 
 @export_group("AI Stats")
 enum Playstyle {Buff, Debuff, Attack}

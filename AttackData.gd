@@ -27,9 +27,15 @@ var can_target_multiple_times : bool = false
 var cooldown : float = 5
 
 @export
-var targets : int = 1
+var target_amount : int = 1
 
 @export
-var target : Filter
+var target_filter : Filter
 @export
 var effects : Array[Effect]
+
+func use_attack(user : CharacterData, targets : Array[CharacterData]):
+	for target in targets:
+		for effect in effects:
+			effect.enact(target)
+	pass
