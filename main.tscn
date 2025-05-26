@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://cqrjaicj4lgbm"]
+[gd_scene load_steps=76 format=3 uid="uid://cqrjaicj4lgbm"]
 
 [ext_resource type="PackedScene" uid="uid://d26jdwk2oi2rp" path="res://character.tscn" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://cgpy04sb2ti5k" path="res://CombatScene.gd" id="1_efxa6"]
@@ -6,32 +6,42 @@
 [ext_resource type="Script" uid="uid://dev3bbs8234ul" path="res://AttackData.gd" id="2_5vw27"]
 [ext_resource type="Script" uid="uid://chal40igpet32" path="res://Data/Effect/Effect.gd" id="3_kek77"]
 [ext_resource type="Script" uid="uid://b02gidehqotp1" path="res://Data/Effect/StatChange.gd" id="4_4c57u"]
+[ext_resource type="Script" uid="uid://8pc3rvrfobyj" path="res://Data/secondary_effect.gd" id="4_dg77c"]
 [ext_resource type="Script" uid="uid://d0jjmkvmmnkcq" path="res://Camera.gd" id="5_4c57u"]
 [ext_resource type="Script" uid="uid://w7xci5q84hvk" path="res://Data/Stat.gd" id="6_dg77c"]
 [ext_resource type="Script" uid="uid://nf1cqa55mvbc" path="res://CharacterData.gd" id="7_ycdy4"]
 [ext_resource type="Script" uid="uid://xspn7atwwsb3" path="res://Data/Filters/FilterTeam.gd" id="9_efxa6"]
 [ext_resource type="PackedScene" uid="uid://bkivihrkixbmx" path="res://Selection.tscn" id="9_kek77"]
+[ext_resource type="Script" uid="uid://bugg36d002uyd" path="res://Data/Filters/FilterStat.gd" id="11_ycdy4"]
+[ext_resource type="Script" uid="uid://2cuttkkw6r2b" path="res://Data/Effect/EffectivenessEffect.gd" id="12_w48qg"]
 
-[sub_resource type="Resource" id="Resource_4c57u"]
+[sub_resource type="Resource" id="Resource_1u8w0"]
 script = ExtResource("4_4c57u")
 type = 0
-amount = -10.0
 exceed_default = false
 stat_name = "hp"
+amount = -10.0
 metadata/_custom_type_script = "uid://b02gidehqotp1"
 
-[sub_resource type="Resource" id="Resource_efxa6"]
+[sub_resource type="Resource" id="Resource_074og"]
+script = ExtResource("9_efxa6")
+inverted = true
+metadata/_custom_type_script = "uid://xspn7atwwsb3"
+
+[sub_resource type="Resource" id="Resource_d13ii"]
 script = ExtResource("2_5vw27")
-id = ""
-name = ""
-type = 2
+id = "groupslap"
+name = "groupslap"
+type = 0
 stat = 0
 base_ai_weight = 10.0
-hits_all = false
+hits_all = true
 can_target_multiple_times = false
 cooldown = 5.0
 target_amount = 1
-effects = Array[ExtResource("3_kek77")]([SubResource("Resource_4c57u")])
+target_filter = SubResource("Resource_074og")
+effects = Array[ExtResource("3_kek77")]([SubResource("Resource_1u8w0")])
+additional_effects = Array[ExtResource("4_dg77c")]([])
 metadata/_custom_type_script = "uid://dev3bbs8234ul"
 
 [sub_resource type="Resource" id="Resource_5vw27"]
@@ -64,8 +74,31 @@ hp = SubResource("Resource_5vw27")
 normal_attack = SubResource("Resource_kek77")
 speed = SubResource("Resource_ycdy4")
 targetability_factor = 1.0
-attacks = Array[ExtResource("2_5vw27")]([SubResource("Resource_efxa6")])
+attacks = Array[ExtResource("2_5vw27")]([SubResource("Resource_d13ii")])
 metadata/_custom_type_script = "uid://nf1cqa55mvbc"
+
+[sub_resource type="Resource" id="Resource_4c57u"]
+script = ExtResource("4_4c57u")
+type = 0
+exceed_default = false
+stat_name = "hp"
+amount = -10.0
+metadata/_custom_type_script = "uid://b02gidehqotp1"
+
+[sub_resource type="Resource" id="Resource_efxa6"]
+script = ExtResource("2_5vw27")
+id = ""
+name = ""
+type = 2
+stat = 0
+base_ai_weight = 10.0
+hits_all = false
+can_target_multiple_times = false
+cooldown = 5.0
+target_amount = 1
+effects = Array[ExtResource("3_kek77")]([SubResource("Resource_4c57u")])
+additional_effects = Array[ExtResource("4_dg77c")]([])
+metadata/_custom_type_script = "uid://dev3bbs8234ul"
 
 [sub_resource type="Resource" id="Resource_d2t1y"]
 script = ExtResource("6_dg77c")
@@ -207,12 +240,33 @@ sky = SubResource("Sky_h2yge")
 ambient_light_source = 3
 ambient_light_color = Color(0.206035, 0.434083, 1, 1)
 
+[sub_resource type="Resource" id="Resource_0odxb"]
+script = ExtResource("11_ycdy4")
+amount = 0.8
+actor_stat = true
+percentage = true
+stat = "hp"
+comparison = 4
+inverted = false
+metadata/_custom_type_script = "uid://bugg36d002uyd"
+
+[sub_resource type="Resource" id="Resource_seu75"]
+script = ExtResource("12_w48qg")
+amount = 5.0
+metadata/_custom_type_script = "uid://2cuttkkw6r2b"
+
+[sub_resource type="Resource" id="Resource_kq58d"]
+script = ExtResource("4_dg77c")
+condition = SubResource("Resource_0odxb")
+effects = Array[ExtResource("3_kek77")]([SubResource("Resource_seu75")])
+metadata/_custom_type_script = "uid://8pc3rvrfobyj"
+
 [sub_resource type="Resource" id="Resource_havpv"]
 script = ExtResource("4_4c57u")
 type = 0
-amount = -50.0
 exceed_default = false
 stat_name = "hp"
+amount = -10.0
 metadata/_custom_type_script = "uid://b02gidehqotp1"
 
 [sub_resource type="Resource" id="Resource_dg77c"]
@@ -233,14 +287,15 @@ cooldown = 5.0
 target_amount = 1
 target_filter = SubResource("Resource_dg77c")
 effects = Array[ExtResource("3_kek77")]([SubResource("Resource_havpv")])
+additional_effects = Array[ExtResource("4_dg77c")]([SubResource("Resource_kq58d")])
 metadata/_custom_type_script = "uid://dev3bbs8234ul"
 
 [sub_resource type="Resource" id="Resource_uatky"]
 script = ExtResource("4_4c57u")
 type = 0
-amount = 1000.0
 exceed_default = true
 stat_name = "speed"
+amount = 1000.0
 metadata/_custom_type_script = "uid://b02gidehqotp1"
 
 [sub_resource type="Resource" id="Resource_2cqfq"]
@@ -261,14 +316,15 @@ cooldown = 5.0
 target_amount = 1
 target_filter = SubResource("Resource_2cqfq")
 effects = Array[ExtResource("3_kek77")]([SubResource("Resource_uatky")])
+additional_effects = Array[ExtResource("4_dg77c")]([])
 metadata/_custom_type_script = "uid://dev3bbs8234ul"
 
 [sub_resource type="Resource" id="Resource_1vm84"]
 script = ExtResource("4_4c57u")
 type = 0
-amount = -100.0
 exceed_default = false
 stat_name = "hp"
+amount = -100.0
 metadata/_custom_type_script = "uid://b02gidehqotp1"
 
 [sub_resource type="Resource" id="Resource_yaehf"]
@@ -289,6 +345,7 @@ cooldown = 50.0
 target_amount = 1
 target_filter = SubResource("Resource_yaehf")
 effects = Array[ExtResource("3_kek77")]([SubResource("Resource_1vm84")])
+additional_effects = Array[ExtResource("4_dg77c")]([])
 metadata/_custom_type_script = "uid://dev3bbs8234ul"
 
 [sub_resource type="Resource" id="Resource_w48qg"]

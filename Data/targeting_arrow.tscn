@@ -1,0 +1,77 @@
+[gd_scene load_steps=13 format=3 uid="uid://nvrnwjc5laot"]
+
+[ext_resource type="Script" uid="uid://cdlli4pxb4h27" path="res://ScaleTargetingArrow.gd" id="1_4exed"]
+[ext_resource type="Script" uid="uid://cf4fjloux8nss" path="res://Data/targeting_arrow.gd" id="1_44q1h"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5bqla"]
+albedo_color = Color(0.905011, 0, 0.0304464, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_dx858"]
+material = SubResource("StandardMaterial3D_5bqla")
+height = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_44q1h"]
+albedo_color = Color(0.905011, 0, 0.0304464, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4exed"]
+material = SubResource("StandardMaterial3D_44q1h")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_suibc"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_pfem4"]
+material = SubResource("StandardMaterial3D_suibc")
+height = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c1ku2"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4i6g4"]
+material = SubResource("StandardMaterial3D_c1ku2")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_akvoi"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_5vdel"]
+material = SubResource("StandardMaterial3D_akvoi")
+height = 1.0
+
+[node name="TargetingArrow" type="Node3D"]
+script = ExtResource("1_44q1h")
+
+[node name="Start" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.365, 0, 0, 0, 0.1, 0, 0, 0, 0.363, 0, 0, 0)
+mesh = SubResource("CylinderMesh_dx858")
+skeleton = NodePath("../MeshInstance3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." node_paths=PackedStringArray("start", "end")]
+transform = Transform3D(-0.364, 0, 0, 0, -0.1, 0, 0, 0, -0.02, 0, 0, 0)
+mesh = SubResource("BoxMesh_4exed")
+script = ExtResource("1_4exed")
+start = NodePath("../Start")
+end = NodePath("../End")
+
+[node name="End" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.365, 0, 0, 0, 0.1, 0, 0, 0, 0.363, -1.80492, -2.38419e-07, -0.848757)
+mesh = SubResource("CylinderMesh_dx858")
+skeleton = NodePath("../MeshInstance3D")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.834338, 0, 0.551253, -0.156942, 0.958616, 0.237537, -0.52844, -0.284701, 0.79981, 0, 1.38943, 2.15099)
+
+[node name="Start2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.365, 0, 0, 0, 0.05, 0, 0, 0, 0.363, 0, 0, 0)
+mesh = SubResource("CylinderMesh_pfem4")
+skeleton = NodePath("../MeshInstance3D")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." node_paths=PackedStringArray("start", "end")]
+transform = Transform3D(-0.364, 0, 0, 0, 0.05, 0, 0, 0, -0.02, 0, 0, 0)
+mesh = SubResource("BoxMesh_4i6g4")
+script = ExtResource("1_4exed")
+start = NodePath("../Start2")
+end = NodePath("../End2")
+
+[node name="End2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.365, 0, 0, 0, 0.05, 0, 0, 0, 0.363, -1.80492, -2.38419e-07, -0.848757)
+mesh = SubResource("CylinderMesh_5vdel")
+skeleton = NodePath("../MeshInstance3D")

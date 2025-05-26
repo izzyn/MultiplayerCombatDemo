@@ -44,3 +44,5 @@ var attacks : Array[AttackData]
 var sprite : CharacterSprite
 
 var _statuses : Array[Status]
+
+var _attack_effectiveness : float = 1.0

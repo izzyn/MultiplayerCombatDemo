@@ -42,7 +42,6 @@ var interacting : bool = false:
 var startUIpos = get_node("../Friendly").get_children()[0].get_node("UI").position
 
 func use_activated_attack():
-	print(remaining_choices)
 	remaining_choices -= 1
 	picked_targets.append(attack_target_list[hovering_target])
 	var selected_node = attack_target_list[hovering_target]
@@ -57,9 +56,10 @@ func use_activated_attack():
 		selection.position = selected_node.global_position
 		hovering_target = 0
 	if remaining_choices == 0:
+		var characters : Array[CharacterData] = []
 		for target in picked_targets:
-			for effect in attack.effects:
-				effect.enact(target.character)
+			characters.append(target.character)
+		attack.use_attack(actor, characters)
 		set_cooldown()
 		reset_choices()
 	pass
@@ -86,7 +86,6 @@ func activate_attack():
 	var actor = get_node("../Friendly").get_child(selected).character
 	var attacks = actor.attacks
 	var attack : AttackData = attacks[selected_button]
-	print(attack.name)
 	var all_data = get_parent().get_all_characters()
 	var all_sprites = get_parent().get_all_sprites()
 	var filter_chars = attack.target_filter.eval(actor, all_data)

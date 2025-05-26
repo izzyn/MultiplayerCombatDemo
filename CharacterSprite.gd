@@ -20,13 +20,14 @@ var _shake_strength : float = 0
 var shake_fade_time : float = 5
 var oldhp = -1
 
-var last_max_cooldown : float = 2
+var last_max_cooldown : float = 3
 
-var cooldown : float = 2
+var cooldown : float = 3
 var rng = RandomNumberGenerator.new()
 # INTENT
 var intent_attack : AttackData
 var intent_targets : Array[CharacterData] = []
+var intent_arrows : Array[Node3D] = []
 
 func _get_intent():
 	var highest_weight = -1
@@ -86,7 +87,6 @@ func _get_intent():
 func _get_weights():
 	pass
 func _ready() -> void:
-	print(character.hp)
 	if flipped_text:
 		get_node("UI").scale.x *= -1
 	get_node("Node/SubViewport/VBoxContainer/PanelContainer/MarginContainer/Label").text = char_name
@@ -99,6 +99,30 @@ func _process(delta: float) -> void:
 		intent_attack.use_attack(character, intent_targets)
 		last_max_cooldown = intent_attack.cooldown
 		cooldown = last_max_cooldown
+		intent_attack = null
+		for i in intent_arrows:
+			i.queue_free()
+		intent_arrows.clear()
+		
+		intent_targets.clear()
+	if !intent_arrows.size() and intent_targets.size() and cooldown <= 3:
+		for target in intent_targets:
+			var friendly = get_node("../../Friendly").get_children()
+			var sprite = null
+			for friend in friendly:
+				if friend.character == target:
+					sprite = friend
+			if sprite == null:
+				break
+			var node = preload("res://Data/targeting_arrow.tscn").instantiate()
+			node.total_time = 3
+			node.target = sprite
+			get_parent().get_parent().add_child(node)
+			node.get_node("Start").global_position = global_position
+			node.get_node("End").global_position = global_position
+			node.start_pos = global_position
+			node.get_node("Start2").global_position = global_position
+			intent_arrows.append(node)
 	cooldown -= delta
 	if oldhp == -1:
 		oldhp=character.hp.value

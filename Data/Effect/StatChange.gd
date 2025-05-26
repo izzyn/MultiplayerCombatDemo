@@ -7,26 +7,20 @@ enum Type {Value, Default}
 var type : Type
 
 @export
-var amount : float
-
-@export
 var exceed_default : bool = false
 
 @export
 var stat_name : String
 
-func enact(target : CharacterData):
+func enact(user : CharacterData, target : CharacterData):
 	var stat = target.get(stat_name)
-	print(stat)
-	print(target.hp)
+	var true_amount = amount * user._attack_effectiveness
 	if type == Type.Value:
 		if exceed_default:
-			stat.value += amount
+			stat.value += true_amount
 		else:
-			stat.value = clamp(stat.value+amount,0,stat.default)
-			print(stat.value)
-			print(target.hp.value)
+			stat.value = clamp(stat.value+true_amount,0,stat.default)
 	elif type == Type.Default:
-		stat.default += amount
+		stat.default += true_amount
 
 	pass

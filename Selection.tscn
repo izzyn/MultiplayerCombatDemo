@@ -21,13 +21,13 @@ transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
 script = ExtResource("1_77ui4")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.605936, 9.14941e-08, 0.159103, 1.50996e-07, -1, 1.02612e-13, 0.795515, 1.20119e-07, -0.121187, 0, 3, 0)
+transform = Transform3D(-0.492571, -7.43767e-08, -0.174055, 1.50996e-07, -1, 1.3426e-13, -0.870273, -1.31407e-07, 0.0985144, 0, 3, 0)
 mesh = SubResource("PrismMesh_kbulj")
 script = ExtResource("1_5yfny")
 speed = 3.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(-1.2356, 0, -0.850478, 0, 1.5, 0, 0.850478, 0, -1.2356, 0, 0, 0)
+transform = Transform3D(1.10898, 0, 1.01004, 0, 1.5, 0, -1.01004, 0, 1.10898, 0, 0, 0)
 mesh = SubResource("TorusMesh_5yfny")
 script = ExtResource("1_5yfny")
 speed = -3.0
