@@ -29,7 +29,9 @@ var intent_attack : AttackData
 var intent_targets : Array[CharacterData] = []
 var intent_arrows : Array[Node3D] = []
 
+var death_delta : float = 0
 func _get_intent():
+	
 	var highest_weight = -1
 	var picked_attack : AttackData
 	for i in character.attacks:
@@ -93,6 +95,13 @@ func _ready() -> void:
 	pass
 
 func _process(delta: float) -> void:
+	if character.hp.value == 0:
+		var node3d : Sprite3D = get_node("Sprite3D4")
+		node3d.material_override.set_shader_parameter("enable_effect", true)
+		death_delta += delta
+		node3d.material_override.set_shader_parameter("time", death_delta)
+		if death_delta > 3:
+			node3d.visible = false
 	if intent_targets.size() == 0 and character and AI_Controlled:
 		_get_intent()
 	elif intent_targets.size() != 0 and cooldown <= 0 and AI_Controlled:

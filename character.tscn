@@ -1,7 +1,50 @@
-[gd_scene load_steps=11 format=3 uid="uid://d26jdwk2oi2rp"]
+[gd_scene load_steps=14 format=3 uid="uid://d26jdwk2oi2rp"]
 
 [ext_resource type="Texture2D" uid="uid://b3wfynj52ybqs" path="res://Stick2.png" id="1_glpr6"]
 [ext_resource type="Script" uid="uid://dr2esifhd0rlm" path="res://CharacterSprite.gd" id="1_wa5vi"]
+
+[sub_resource type="Shader" id="Shader_pjt0s"]
+code = "shader_type spatial;
+render_mode unshaded;
+// --- Uniforms --- //
+uniform float resolution: hint_range(0.0, 256.0, 1.0) = 32.0;
+uniform sampler2D albedo_texture;
+uniform bool enable_effect;
+uniform float time : hint_range(0.0, 256.0, 1.0) = 1.0;
+uniform float time_scale : hint_range(0.0, 100.0, 1) = 1.0;
+// --- Functions --- //
+void fragment() {
+	
+	if (enable_effect){
+		vec4 tex = texture(albedo_texture, round(UV * (resolution/(time_scale*time+1.0) + 1.0) - (UV - 0.5)) / (resolution/(time_scale*time+1.0) + 1.0));
+		ALBEDO.rgb = tex.rgb;
+		ALPHA = tex.a;
+	}
+	else {
+		ALBEDO.rgb = texture(albedo_texture, UV).rgb;
+		ALPHA = texture(albedo_texture, UV).a;
+	}
+	
+}
+
+//void light() {
+//	// Called for every pixel for every light affecting the material.
+//	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wa5vi"]
+load_path = "res://.godot/imported/Stick2.png-b88df5a062ca26793cde53a91bf46c1d.s3tc.ctex"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wfnr8"]
+resource_local_to_scene = true
+render_priority = 0
+shader = SubResource("Shader_pjt0s")
+shader_parameter/resolution = 256.0
+shader_parameter/albedo_texture = SubResource("CompressedTexture2D_wa5vi")
+shader_parameter/enable_effect = false
+shader_parameter/time = 0.0
+shader_parameter/time_scale = 50.0
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_glpr6"]
 viewport_path = NodePath("Node/SubViewport")
@@ -57,6 +100,9 @@ script = ExtResource("1_wa5vi")
 
 [node name="Sprite3D4" type="Sprite3D" parent="."]
 transform = Transform3D(1.00169, 0, 0, 0, 1.00169, 0, 0, 0, 1.00169, 0, 4, 0)
+material_override = SubResource("ShaderMaterial_wfnr8")
+ignore_occlusion_culling = true
+gi_mode = 0
 flip_h = true
 texture = ExtResource("1_glpr6")
 
