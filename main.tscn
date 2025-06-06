@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=3 uid="uid://cqrjaicj4lgbm"]
+[gd_scene load_steps=93 format=3 uid="uid://cqrjaicj4lgbm"]
 
 [ext_resource type="PackedScene" uid="uid://d26jdwk2oi2rp" path="res://character.tscn" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://cgpy04sb2ti5k" path="res://CombatScene.gd" id="1_efxa6"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://8pc3rvrfobyj" path="res://Data/secondary_effect.gd" id="4_dg77c"]
 [ext_resource type="Script" uid="uid://d0jjmkvmmnkcq" path="res://Camera.gd" id="5_4c57u"]
 [ext_resource type="Script" uid="uid://w7xci5q84hvk" path="res://Data/Stat.gd" id="6_dg77c"]
+[ext_resource type="Script" uid="uid://cvicm6h3smnkv" path="res://Data/ScaleFactor.gd" id="7_vivmo"]
 [ext_resource type="Script" uid="uid://nf1cqa55mvbc" path="res://CharacterData.gd" id="7_ycdy4"]
 [ext_resource type="Script" uid="uid://xspn7atwwsb3" path="res://Data/Filters/FilterTeam.gd" id="9_efxa6"]
 [ext_resource type="PackedScene" uid="uid://bkivihrkixbmx" path="res://Selection.tscn" id="9_kek77"]
@@ -40,6 +41,7 @@ can_target_multiple_times = false
 cooldown = 5.0
 target_amount = 1
 target_filter = SubResource("Resource_074og")
+scale_stats = Array[ExtResource("7_vivmo")]([])
 effects = Array[ExtResource("3_kek77")]([SubResource("Resource_1u8w0")])
 additional_effects = Array[ExtResource("4_dg77c")]([])
 metadata/_custom_type_script = "uid://dev3bbs8234ul"
@@ -96,6 +98,7 @@ hits_all = false
 can_target_multiple_times = false
 cooldown = 5.0
 target_amount = 1
+scale_stats = Array[ExtResource("7_vivmo")]([])
 effects = Array[ExtResource("3_kek77")]([SubResource("Resource_4c57u")])
 additional_effects = Array[ExtResource("4_dg77c")]([])
 metadata/_custom_type_script = "uid://dev3bbs8234ul"
@@ -286,6 +289,7 @@ can_target_multiple_times = false
 cooldown = 5.0
 target_amount = 1
 target_filter = SubResource("Resource_dg77c")
+scale_stats = Array[ExtResource("7_vivmo")]([])
 effects = Array[ExtResource("3_kek77")]([SubResource("Resource_havpv")])
 additional_effects = Array[ExtResource("4_dg77c")]([SubResource("Resource_kq58d")])
 metadata/_custom_type_script = "uid://dev3bbs8234ul"
@@ -315,6 +319,7 @@ can_target_multiple_times = false
 cooldown = 5.0
 target_amount = 1
 target_filter = SubResource("Resource_2cqfq")
+scale_stats = Array[ExtResource("7_vivmo")]([])
 effects = Array[ExtResource("3_kek77")]([SubResource("Resource_uatky")])
 additional_effects = Array[ExtResource("4_dg77c")]([])
 metadata/_custom_type_script = "uid://dev3bbs8234ul"
@@ -344,6 +349,7 @@ can_target_multiple_times = false
 cooldown = 50.0
 target_amount = 1
 target_filter = SubResource("Resource_yaehf")
+scale_stats = Array[ExtResource("7_vivmo")]([])
 effects = Array[ExtResource("3_kek77")]([SubResource("Resource_1vm84")])
 additional_effects = Array[ExtResource("4_dg77c")]([])
 metadata/_custom_type_script = "uid://dev3bbs8234ul"
@@ -447,6 +453,132 @@ targetability_factor = 1.0
 attacks = Array[ExtResource("2_5vw27")]([SubResource("Resource_xcirw")])
 metadata/_custom_type_script = "uid://nf1cqa55mvbc"
 
+[sub_resource type="Resource" id="Resource_facbu"]
+script = ExtResource("4_4c57u")
+type = 0
+exceed_default = false
+stat_name = "hp"
+amount = -20.0
+metadata/_custom_type_script = "uid://b02gidehqotp1"
+
+[sub_resource type="Resource" id="Resource_cyx1q"]
+script = ExtResource("7_vivmo")
+stat_name = "normal_attack"
+scale_weight = 3.0
+metadata/_custom_type_script = "uid://cvicm6h3smnkv"
+
+[sub_resource type="Resource" id="Resource_b1qrp"]
+script = ExtResource("9_efxa6")
+inverted = true
+metadata/_custom_type_script = "uid://xspn7atwwsb3"
+
+[sub_resource type="Resource" id="Resource_htxhm"]
+script = ExtResource("2_5vw27")
+id = "ginBasic"
+name = "Basic Attack"
+type = 2
+stat = 0
+base_ai_weight = 10.0
+hits_all = false
+can_target_multiple_times = false
+cooldown = 4.0
+target_amount = 1
+target_filter = SubResource("Resource_b1qrp")
+scale_stats = Array[ExtResource("7_vivmo")]([SubResource("Resource_cyx1q")])
+effects = Array[ExtResource("3_kek77")]([SubResource("Resource_facbu")])
+additional_effects = Array[ExtResource("4_dg77c")]([])
+metadata/_custom_type_script = "uid://dev3bbs8234ul"
+
+[sub_resource type="Resource" id="Resource_come4"]
+script = ExtResource("4_4c57u")
+type = 0
+exceed_default = false
+stat_name = "hp"
+amount = -20.0
+metadata/_custom_type_script = "uid://b02gidehqotp1"
+
+[sub_resource type="Resource" id="Resource_0n3wm"]
+script = ExtResource("9_efxa6")
+inverted = true
+metadata/_custom_type_script = "uid://xspn7atwwsb3"
+
+[sub_resource type="Resource" id="Resource_qnost"]
+script = ExtResource("2_5vw27")
+id = "ginSkill1"
+name = "Ripple"
+type = 2
+stat = 0
+base_ai_weight = 10.0
+hits_all = false
+can_target_multiple_times = false
+cooldown = 4.0
+target_amount = 1
+target_filter = SubResource("Resource_0n3wm")
+scale_stats = Array[ExtResource("7_vivmo")]([])
+effects = Array[ExtResource("3_kek77")]([SubResource("Resource_come4")])
+additional_effects = Array[ExtResource("4_dg77c")]([])
+metadata/_custom_type_script = "uid://dev3bbs8234ul"
+
+[sub_resource type="Resource" id="Resource_blkrb"]
+script = ExtResource("4_4c57u")
+type = 0
+exceed_default = false
+stat_name = "hp"
+amount = -45.0
+metadata/_custom_type_script = "uid://b02gidehqotp1"
+
+[sub_resource type="Resource" id="Resource_abqjc"]
+script = ExtResource("9_efxa6")
+inverted = true
+metadata/_custom_type_script = "uid://xspn7atwwsb3"
+
+[sub_resource type="Resource" id="Resource_wnkbs"]
+script = ExtResource("2_5vw27")
+id = "ginSkill2"
+name = "Crash"
+type = 2
+stat = 0
+base_ai_weight = 10.0
+hits_all = false
+can_target_multiple_times = false
+cooldown = 5.0
+target_amount = 1
+target_filter = SubResource("Resource_abqjc")
+scale_stats = Array[ExtResource("7_vivmo")]([])
+effects = Array[ExtResource("3_kek77")]([SubResource("Resource_blkrb")])
+additional_effects = Array[ExtResource("4_dg77c")]([])
+metadata/_custom_type_script = "uid://dev3bbs8234ul"
+
+[sub_resource type="Resource" id="Resource_6iyjs"]
+script = ExtResource("4_4c57u")
+type = 0
+exceed_default = false
+stat_name = "hp"
+amount = -37.0
+metadata/_custom_type_script = "uid://b02gidehqotp1"
+
+[sub_resource type="Resource" id="Resource_uit24"]
+script = ExtResource("9_efxa6")
+inverted = true
+metadata/_custom_type_script = "uid://xspn7atwwsb3"
+
+[sub_resource type="Resource" id="Resource_ruth0"]
+script = ExtResource("2_5vw27")
+id = "ginUlt"
+name = "Tide Breaker"
+type = 2
+stat = 0
+base_ai_weight = 10.0
+hits_all = true
+can_target_multiple_times = false
+cooldown = 6.0
+target_amount = 1
+target_filter = SubResource("Resource_uit24")
+scale_stats = Array[ExtResource("7_vivmo")]([])
+effects = Array[ExtResource("3_kek77")]([SubResource("Resource_6iyjs")])
+additional_effects = Array[ExtResource("4_dg77c")]([])
+metadata/_custom_type_script = "uid://dev3bbs8234ul"
+
 [sub_resource type="Resource" id="Resource_0rl1p"]
 script = ExtResource("6_dg77c")
 value = 100.0
@@ -454,7 +586,28 @@ default = 100.0
 mod = 1.0
 metadata/_custom_type_script = "uid://w7xci5q84hvk"
 
+[sub_resource type="Resource" id="Resource_rm4vd"]
+script = ExtResource("6_dg77c")
+value = 100.0
+default = 100.0
+mod = 1.0
+metadata/_custom_type_script = "uid://w7xci5q84hvk"
+
+[sub_resource type="Resource" id="Resource_ntx8l"]
+script = ExtResource("6_dg77c")
+value = 100.0
+default = 100.0
+mod = 1.0
+metadata/_custom_type_script = "uid://w7xci5q84hvk"
+
 [sub_resource type="Resource" id="Resource_ok6jj"]
+script = ExtResource("6_dg77c")
+value = 200.0
+default = 200.0
+mod = 1.0
+metadata/_custom_type_script = "uid://w7xci5q84hvk"
+
+[sub_resource type="Resource" id="Resource_wu3dr"]
 script = ExtResource("6_dg77c")
 value = 100.0
 default = 100.0
@@ -475,9 +628,12 @@ name = "Test Character"
 team = true
 hp = SubResource("Resource_0rl1p")
 normal_attack = SubResource("Resource_ok6jj")
+magic_attack = SubResource("Resource_rm4vd")
+normal_defence = SubResource("Resource_wu3dr")
+magic_defence = SubResource("Resource_ntx8l")
 speed = SubResource("Resource_h8e4i")
 targetability_factor = 1.0
-attacks = Array[ExtResource("2_5vw27")]([SubResource("Resource_xcirw")])
+attacks = Array[ExtResource("2_5vw27")]([SubResource("Resource_htxhm"), SubResource("Resource_qnost"), SubResource("Resource_wnkbs"), SubResource("Resource_ruth0")])
 metadata/_custom_type_script = "uid://nf1cqa55mvbc"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0xm2m"]
