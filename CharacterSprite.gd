@@ -88,6 +88,7 @@ func _get_intent():
 
 func _get_weights():
 	pass
+
 func _ready() -> void:
 	if flipped_text:
 		get_node("UI").scale.x *= -1
@@ -97,12 +98,21 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if character.hp.value == 0:
 		var node3d : Sprite3D = get_node("Sprite3D4")
-		node3d.material_override.set_shader_parameter("enable_effect", true)
-		death_delta += delta
-		node3d.material_override.set_shader_parameter("time", death_delta)
-		if death_delta > 3:
-			node3d.visible = false
-	if intent_targets.size() == 0 and character and AI_Controlled:
+		node3d.rotation.y = lerpf(node3d.rotation.y,PI*10,delta)
+		for arrow in intent_arrows:
+			arrow.queue_free()
+		intent_arrows.clear()
+		intent_targets.clear()
+		intent_attack = null
+		if node3d.rotation.y > PI*8:
+			visible = false
+		#node3d.material_override.set_shader_parameter("enable_effect", true)
+		#death_delta += delta
+		#node3d.material_override.set_shader_parameter("time", death_delta)
+		#if death_delta > 3:
+		#	node3d.visible = false
+		
+	if intent_targets.size() == 0 and character and AI_Controlled and character.hp.value != 0:
 		_get_intent()
 	elif intent_targets.size() != 0 and cooldown <= 0 and AI_Controlled:
 		intent_attack.use_attack(character, intent_targets)

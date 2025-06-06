@@ -41,6 +41,9 @@ var interacting : bool = false:
 @onready
 var startUIpos = get_node("../Friendly").get_children()[0].get_node("UI").position
 
+func _on_death():
+	pass
+
 func use_activated_attack():
 	remaining_choices -= 1
 	picked_targets.append(attack_target_list[hovering_target])
@@ -131,13 +134,16 @@ func interaction_changed(old):
 			instance.get_node("AnimationPlayer").play("Appear")
 			await get_tree().create_timer(0.2).timeout
 	pass
-func selected_changed(old_value : int):
+func selected_changed(old : int):
+	if !remaining_choices and get_node("../Friendly").get_child(selected).character.hp.value == 0:
+		selected = (selected+1)%get_node("../Friendly").get_children().size()
+		
 	var node = get_node("../Friendly")
 	for child in range(node.get_children().size()):
 		var current = get_node("../Friendly").get_children()[child].get_node("UI")
 		if child == selected:
 			current.get_node("AnimationPlayer").play("Scale")
-		elif child == old_value:
+		elif child == old:
 			current.get_node("AnimationPlayer").play_backwards("Scale")
 	get_node("../Camera3D").target =get_node("../Friendly").get_child(selected)
 	pass
