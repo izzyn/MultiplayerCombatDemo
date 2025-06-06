@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://bulhprrgcwgd6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xg5aa"]
+bg_color = Color(0, 0, 0, 0.498039)
+border_width_left = 15
+border_width_top = 15
+border_width_right = 15
+border_width_bottom = 15
+corner_radius_top_left = 35
+corner_radius_top_right = 35
+corner_radius_bottom_right = 35
+corner_radius_bottom_left = 35
+shadow_color = Color(0, 0, 0, 0.784314)
+
+[sub_resource type="Theme" id="Theme_da25s"]
+Panel/styles/panel = SubResource("StyleBoxFlat_xg5aa")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_upefj"]
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="Theme" id="Theme_kgb3s"]
+Panel/styles/panel = SubResource("StyleBoxFlat_upefj")
+
+[node name="OrbGauge" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 150.0
+grow_vertical = 2
+theme = SubResource("Theme_da25s")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_kgb3s")
+alignment = 2
