@@ -92,6 +92,8 @@ func activate_attack():
 	var all_data = get_parent().get_all_characters()
 	var all_sprites = get_parent().get_all_sprites()
 	var filter_chars = attack.target_filter.eval(actor, all_data)
+	if len(filter_chars) == 0: 
+		return
 	attack_target_list.clear()
 	attack_target_list.append_array(all_sprites.filter(func(x): return x.character in filter_chars))
 	remaining_choices = attack.target_amount

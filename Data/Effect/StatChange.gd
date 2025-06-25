@@ -12,9 +12,9 @@ var exceed_default : bool = false
 @export
 var stat_name : String
 
-func enact(user : CharacterData, target : CharacterData):
+func enact(user : CharacterData, target : CharacterData, effectiveness : float):
 	var stat = target.get(stat_name)
-	var true_amount = amount * user._attack_effectiveness
+	var true_amount = amount * effectiveness
 	if type == Type.Value:
 		if exceed_default:
 			stat.value += true_amount
@@ -22,5 +22,6 @@ func enact(user : CharacterData, target : CharacterData):
 			stat.value = clamp(stat.value+true_amount,0,stat.default)
 	elif type == Type.Default:
 		stat.default += true_amount
+		
 
 	pass

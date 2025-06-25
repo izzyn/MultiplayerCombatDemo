@@ -11,6 +11,6 @@ func _eval(actor : CharacterData, characters : Array[CharacterData]) -> Array[Ch
 		var filtered_list = i.eval(actor, characters)
 		for j in filtered_list:
 			if j not in list:
-				list.append(i)
+				list.append(j)
 	return list
 	pass

@@ -1,4 +1,4 @@
-[gd_scene load_steps=94 format=3 uid="uid://cqrjaicj4lgbm"]
+[gd_scene load_steps=95 format=3 uid="uid://cqrjaicj4lgbm"]
 
 [ext_resource type="PackedScene" uid="uid://d26jdwk2oi2rp" path="res://character.tscn" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://cgpy04sb2ti5k" path="res://CombatScene.gd" id="1_efxa6"]
@@ -6,15 +6,15 @@
 [ext_resource type="Script" uid="uid://dev3bbs8234ul" path="res://AttackData.gd" id="2_5vw27"]
 [ext_resource type="Script" uid="uid://chal40igpet32" path="res://Data/Effect/Effect.gd" id="3_kek77"]
 [ext_resource type="Script" uid="uid://b02gidehqotp1" path="res://Data/Effect/StatChange.gd" id="4_4c57u"]
-[ext_resource type="Script" uid="uid://8pc3rvrfobyj" path="res://Data/secondary_effect.gd" id="4_dg77c"]
 [ext_resource type="Script" uid="uid://d0jjmkvmmnkcq" path="res://Camera.gd" id="5_4c57u"]
 [ext_resource type="Script" uid="uid://w7xci5q84hvk" path="res://Data/Stat.gd" id="6_dg77c"]
+[ext_resource type="Script" uid="uid://df3a3xyxvoio3" path="res://Data/Modifier.gd" id="7_2cqfq"]
 [ext_resource type="Script" uid="uid://cvicm6h3smnkv" path="res://Data/ScaleFactor.gd" id="7_vivmo"]
 [ext_resource type="Script" uid="uid://nf1cqa55mvbc" path="res://CharacterData.gd" id="7_ycdy4"]
 [ext_resource type="Script" uid="uid://xspn7atwwsb3" path="res://Data/Filters/FilterTeam.gd" id="9_efxa6"]
 [ext_resource type="PackedScene" uid="uid://bkivihrkixbmx" path="res://Selection.tscn" id="9_kek77"]
-[ext_resource type="Script" uid="uid://bugg36d002uyd" path="res://Data/Filters/FilterStat.gd" id="11_ycdy4"]
-[ext_resource type="Script" uid="uid://2cuttkkw6r2b" path="res://Data/Effect/EffectivenessEffect.gd" id="12_w48qg"]
+[ext_resource type="Script" uid="uid://c8mk8e686h6be" path="res://Data/Filters/Filter.gd" id="12_2cqfq"]
+[ext_resource type="Script" uid="uid://dbmeokg4ticq2" path="res://Data/Filters/FilterAny.gd" id="13_yaehf"]
 [ext_resource type="PackedScene" uid="uid://bulhprrgcwgd6" path="res://orb_gauge.tscn" id="16_2cqfq"]
 
 [sub_resource type="Resource" id="Resource_1u8w0"]
@@ -44,7 +44,7 @@ target_amount = 1
 target_filter = SubResource("Resource_074og")
 scale_stats = Array[ExtResource("7_vivmo")]([])
 effects = Array[ExtResource("3_kek77")]([SubResource("Resource_1u8w0")])
-additional_effects = Array[ExtResource("4_dg77c")]([])
+modifiers = Array[ExtResource("7_2cqfq")]([])
 metadata/_custom_type_script = "uid://dev3bbs8234ul"
 
 [sub_resource type="Resource" id="Resource_5vw27"]
@@ -101,7 +101,7 @@ cooldown = 5.0
 target_amount = 1
 scale_stats = Array[ExtResource("7_vivmo")]([])
 effects = Array[ExtResource("3_kek77")]([SubResource("Resource_4c57u")])
-additional_effects = Array[ExtResource("4_dg77c")]([])
+modifiers = Array[ExtResource("7_2cqfq")]([])
 metadata/_custom_type_script = "uid://dev3bbs8234ul"
 
 [sub_resource type="Resource" id="Resource_d2t1y"]
@@ -244,27 +244,6 @@ sky = SubResource("Sky_h2yge")
 ambient_light_source = 3
 ambient_light_color = Color(0.206035, 0.434083, 1, 1)
 
-[sub_resource type="Resource" id="Resource_0odxb"]
-script = ExtResource("11_ycdy4")
-amount = 0.8
-actor_stat = true
-percentage = true
-stat = "hp"
-comparison = 4
-inverted = false
-metadata/_custom_type_script = "uid://bugg36d002uyd"
-
-[sub_resource type="Resource" id="Resource_seu75"]
-script = ExtResource("12_w48qg")
-amount = 5.0
-metadata/_custom_type_script = "uid://2cuttkkw6r2b"
-
-[sub_resource type="Resource" id="Resource_kq58d"]
-script = ExtResource("4_dg77c")
-condition = SubResource("Resource_0odxb")
-effects = Array[ExtResource("3_kek77")]([SubResource("Resource_seu75")])
-metadata/_custom_type_script = "uid://8pc3rvrfobyj"
-
 [sub_resource type="Resource" id="Resource_havpv"]
 script = ExtResource("4_4c57u")
 type = 0
@@ -273,10 +252,33 @@ stat_name = "hp"
 amount = -10.0
 metadata/_custom_type_script = "uid://b02gidehqotp1"
 
-[sub_resource type="Resource" id="Resource_dg77c"]
+[sub_resource type="Resource" id="Resource_0odxb"]
 script = ExtResource("9_efxa6")
 inverted = true
 metadata/_custom_type_script = "uid://xspn7atwwsb3"
+
+[sub_resource type="Resource" id="Resource_kq58d"]
+script = ExtResource("7_2cqfq")
+filter = SubResource("Resource_0odxb")
+value = 2.0
+type = 0
+metadata/_custom_type_script = "uid://df3a3xyxvoio3"
+
+[sub_resource type="Resource" id="Resource_seu75"]
+script = ExtResource("9_efxa6")
+inverted = true
+metadata/_custom_type_script = "uid://xspn7atwwsb3"
+
+[sub_resource type="Resource" id="Resource_0dhbp"]
+script = ExtResource("9_efxa6")
+inverted = false
+metadata/_custom_type_script = "uid://xspn7atwwsb3"
+
+[sub_resource type="Resource" id="Resource_jx0wj"]
+script = ExtResource("13_yaehf")
+filters = Array[ExtResource("12_2cqfq")]([SubResource("Resource_seu75"), SubResource("Resource_0dhbp")])
+inverted = false
+metadata/_custom_type_script = "uid://dbmeokg4ticq2"
 
 [sub_resource type="Resource" id="Resource_xcirw"]
 script = ExtResource("2_5vw27")
@@ -287,12 +289,12 @@ stat = 0
 base_ai_weight = 10.0
 hits_all = false
 can_target_multiple_times = false
-cooldown = 5.0
+cooldown = 0.1
 target_amount = 1
-target_filter = SubResource("Resource_dg77c")
+target_filter = SubResource("Resource_jx0wj")
 scale_stats = Array[ExtResource("7_vivmo")]([])
 effects = Array[ExtResource("3_kek77")]([SubResource("Resource_havpv")])
-additional_effects = Array[ExtResource("4_dg77c")]([SubResource("Resource_kq58d")])
+modifiers = Array[ExtResource("7_2cqfq")]([SubResource("Resource_kq58d")])
 metadata/_custom_type_script = "uid://dev3bbs8234ul"
 
 [sub_resource type="Resource" id="Resource_uatky"]
@@ -322,7 +324,7 @@ target_amount = 1
 target_filter = SubResource("Resource_2cqfq")
 scale_stats = Array[ExtResource("7_vivmo")]([])
 effects = Array[ExtResource("3_kek77")]([SubResource("Resource_uatky")])
-additional_effects = Array[ExtResource("4_dg77c")]([])
+modifiers = Array[ExtResource("7_2cqfq")]([])
 metadata/_custom_type_script = "uid://dev3bbs8234ul"
 
 [sub_resource type="Resource" id="Resource_1vm84"]
@@ -352,7 +354,7 @@ target_amount = 1
 target_filter = SubResource("Resource_yaehf")
 scale_stats = Array[ExtResource("7_vivmo")]([])
 effects = Array[ExtResource("3_kek77")]([SubResource("Resource_1vm84")])
-additional_effects = Array[ExtResource("4_dg77c")]([])
+modifiers = Array[ExtResource("7_2cqfq")]([])
 metadata/_custom_type_script = "uid://dev3bbs8234ul"
 
 [sub_resource type="Resource" id="Resource_w48qg"]
@@ -487,7 +489,7 @@ target_amount = 1
 target_filter = SubResource("Resource_b1qrp")
 scale_stats = Array[ExtResource("7_vivmo")]([SubResource("Resource_cyx1q")])
 effects = Array[ExtResource("3_kek77")]([SubResource("Resource_facbu")])
-additional_effects = Array[ExtResource("4_dg77c")]([])
+modifiers = Array[ExtResource("7_2cqfq")]([])
 metadata/_custom_type_script = "uid://dev3bbs8234ul"
 
 [sub_resource type="Resource" id="Resource_come4"]
@@ -517,7 +519,7 @@ target_amount = 1
 target_filter = SubResource("Resource_0n3wm")
 scale_stats = Array[ExtResource("7_vivmo")]([])
 effects = Array[ExtResource("3_kek77")]([SubResource("Resource_come4")])
-additional_effects = Array[ExtResource("4_dg77c")]([])
+modifiers = Array[ExtResource("7_2cqfq")]([])
 metadata/_custom_type_script = "uid://dev3bbs8234ul"
 
 [sub_resource type="Resource" id="Resource_blkrb"]
@@ -547,7 +549,7 @@ target_amount = 1
 target_filter = SubResource("Resource_abqjc")
 scale_stats = Array[ExtResource("7_vivmo")]([])
 effects = Array[ExtResource("3_kek77")]([SubResource("Resource_blkrb")])
-additional_effects = Array[ExtResource("4_dg77c")]([])
+modifiers = Array[ExtResource("7_2cqfq")]([])
 metadata/_custom_type_script = "uid://dev3bbs8234ul"
 
 [sub_resource type="Resource" id="Resource_6iyjs"]
@@ -577,7 +579,7 @@ target_amount = 1
 target_filter = SubResource("Resource_uit24")
 scale_stats = Array[ExtResource("7_vivmo")]([])
 effects = Array[ExtResource("3_kek77")]([SubResource("Resource_6iyjs")])
-additional_effects = Array[ExtResource("4_dg77c")]([])
+modifiers = Array[ExtResource("7_2cqfq")]([])
 metadata/_custom_type_script = "uid://dev3bbs8234ul"
 
 [sub_resource type="Resource" id="Resource_0rl1p"]

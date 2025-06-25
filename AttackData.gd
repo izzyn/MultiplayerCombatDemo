@@ -38,30 +38,46 @@ var scale_stats : Array[ScaleFactor]
 @export
 var effects : Array[Effect]
 
+
+## Modifiers in this field can only be offensive, defensive modifiers in this field will simply work asif disabled.
 @export
-var additional_effects : Array[SecondaryEffect]
+var modifiers : Array[Modifier]
 
 func use_attack(user : CharacterData, targets : Array[CharacterData]):
-	var start_effectiveness = user._attack_effectiveness
-	for scale in scale_stats:
-		var value = user.get(scale.stat_name).value/100
-		user._attack_effectiveness += start_effectiveness * value * scale.scale_weight
-		
-	for add in additional_effects:
-		var increased_effectiveness = false
-		var filtered = add.condition.eval(user, targets)
-		for target in filtered:
-			for effect in add.effects:
-				effect.enact(user,target)
-				if effect is EffectivenessEffect:
-					increased_effectiveness = true
-					break
-			if increased_effectiveness:
-				break
-		
+	var effectiveness_dict = {}
 	for target in targets:
-		for effect in effects:
-			effect.enact(user, target)
+		effectiveness_dict[target] = 1
+		for scale in scale_stats:
+			var value = user.get(scale.stat_name).value/100
+			effectiveness_dict[target] += value * scale.scale_weight
 	
-	user._attack_effectiveness = 1
-	pass
+	var total_modifiers : Array[Modifier] = []
+	total_modifiers.append_array(modifiers)
+	
+	for status in user._statuses:
+		total_modifiers.append_array(status.modifiers)
+	
+	for mod in total_modifiers:
+		if mod.type == Modifier.Type.Offensive:
+			var affected = mod.filter.eval(user, targets)
+			for aff in affected:
+				effectiveness_dict[aff] *= mod.value
+					
+	for target in targets:
+		for status in target._statuses:
+			for mod in status.modifiers:
+				if mod.type == Modifier.Type.Defensive:
+					var arr : Array[CharacterData] = []
+					arr.append(user)
+					var use = len(mod.filter.eval(target, arr)) == 1
+					if use: effectiveness_dict[target] *= mod.value
+	
+	for target in targets:
+		var total_effects : Array[Effect] = []
+		total_effects.append_array(effects)
+		for status in user._statuses:
+			total_effects.append_array(status.additional_effect)
+		for effect in total_effects:
+			print(effectiveness_dict[target])
+			effect.enact(user, target, effectiveness_dict[target])
+		pass

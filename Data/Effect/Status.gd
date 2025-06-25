@@ -9,3 +9,9 @@ var stacks : int
 
 @export
 var stackable : bool
+
+@export
+var modifiers : Array[Modifier]
+
+@export
+var additional_effect : Array[SecondaryEffect]
