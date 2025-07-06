@@ -15,3 +15,6 @@ var modifiers : Array[Modifier]
 
 @export
 var additional_effect : Array[SecondaryEffect]
+
+@export
+var icon : Texture2D

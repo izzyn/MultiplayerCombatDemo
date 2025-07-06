@@ -260,7 +260,7 @@ metadata/_custom_type_script = "uid://xspn7atwwsb3"
 [sub_resource type="Resource" id="Resource_kq58d"]
 script = ExtResource("7_2cqfq")
 filter = SubResource("Resource_0odxb")
-value = 2.0
+value = 10.0
 type = 0
 metadata/_custom_type_script = "uid://df3a3xyxvoio3"
 
@@ -688,7 +688,7 @@ mesh = SubResource("PlaneMesh_ig7tw")
 transform = Transform3D(0.999996, -0.000761348, -0.0026216, 0.00178364, -0.544784, 0.838575, -0.00206665, -0.838576, -0.544781, 0, 12.4747, 0.612432)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.999619, -0.0276076, 0, 0.0276076, 0.999619, 0, 11.647, 38.078)
+transform = Transform3D(1, 0, 0, 0, 0.998505, -0.0546539, 0, 0.0546539, 0.998505, 0, 10.934, 38.078)
 current = true
 script = ExtResource("5_4c57u")
 
@@ -734,3 +734,4 @@ move_speed = 10.0
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="OrbGauge" parent="CanvasLayer" instance=ExtResource("16_2cqfq")]
+visible = false

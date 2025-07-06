@@ -1,7 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://d26jdwk2oi2rp"]
+[gd_scene load_steps=9 format=3 uid="uid://d26jdwk2oi2rp"]
 
 [ext_resource type="Texture2D" uid="uid://b3wfynj52ybqs" path="res://Stick2.png" id="1_glpr6"]
 [ext_resource type="Script" uid="uid://dr2esifhd0rlm" path="res://CharacterSprite.gd" id="1_wa5vi"]
+[ext_resource type="PackedScene" uid="uid://c01e760juiihk" path="res://CharacterUI.tscn" id="3_wa5vi"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_wa5vi"]
+viewport_path = NodePath("Node/SubViewport3")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_glpr6"]
 viewport_path = NodePath("Node/SubViewport")
@@ -40,18 +44,6 @@ _data = {
 &"Scale": SubResource("Animation_glpr6")
 }
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_glpr6"]
-bg_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_glpr6"]
-font_size = 64
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pjt0s"]
-bg_color = Color(0.964706, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wfnr8"]
-bg_color = Color(0.878431, 0.486275, 0, 1)
-
 [node name="Character" type="Node3D"]
 script = ExtResource("1_wa5vi")
 
@@ -61,6 +53,10 @@ ignore_occlusion_culling = true
 gi_mode = 0
 flip_h = true
 texture = ExtResource("1_glpr6")
+
+[node name="UI2" type="Sprite3D" parent="."]
+transform = Transform3D(1.93185, 0, 0.517638, 0, 2, 0, -0.517638, 0, 1.93185, -0.398051, 9.04177, 6.17044)
+texture = SubResource("ViewportTexture_wa5vi")
 
 [node name="UI" type="Sprite3D" parent="."]
 transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 3, 3, 1)
@@ -77,46 +73,20 @@ libraries = {
 own_world_3d = true
 transparent_bg = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Node/SubViewport"]
-anchors_preset = 12
+[node name="VBoxContainer" parent="Node/SubViewport" instance=ExtResource("3_wa5vi")]
+
+[node name="SubViewport3" type="SubViewport" parent="Node"]
+own_world_3d = true
+transparent_bg = true
+
+[node name="Attacks" type="VBoxContainer" parent="Node/SubViewport3"]
+anchors_preset = 7
+anchor_left = 0.5
 anchor_top = 1.0
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_top = -120.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
 grow_horizontal = 2
 grow_vertical = 0
-size_flags_vertical = 2
-
-[node name="Attacks" type="VBoxContainer" parent="Node/SubViewport/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 3
-
-[node name="PanelContainer" type="PanelContainer" parent="Node/SubViewport/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 6
-theme_override_styles/panel = SubResource("StyleBoxFlat_glpr6")
-
-[node name="MarginContainer" type="MarginContainer" parent="Node/SubViewport/VBoxContainer/PanelContainer"]
-layout_mode = 2
-theme_override_constants/margin_right = 10
-
-[node name="Label" type="Label" parent="Node/SubViewport/VBoxContainer/PanelContainer/MarginContainer"]
-layout_mode = 2
-text = "What the test"
-label_settings = SubResource("LabelSettings_glpr6")
-
-[node name="HPBar" type="ProgressBar" parent="Node/SubViewport/VBoxContainer"]
-custom_minimum_size = Vector2(0, 10)
-layout_mode = 2
-size_flags_vertical = 2
-theme_override_styles/fill = SubResource("StyleBoxFlat_pjt0s")
-value = 50.0
-show_percentage = false
-
-[node name="Timebar" type="ProgressBar" parent="Node/SubViewport/VBoxContainer"]
-custom_minimum_size = Vector2(0, 10)
-layout_mode = 2
-size_flags_vertical = 2
-theme_override_styles/fill = SubResource("StyleBoxFlat_wfnr8")
-show_percentage = false
