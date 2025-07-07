@@ -10,8 +10,7 @@ var flipped_text : bool
 var AI_Controlled : bool
 
 var last_selected : int
-@export
-var char_name : String
+
 @export_group("Screen Shake")
 @export
 var start_ui_shake_strength : float = 50
@@ -31,7 +30,6 @@ var intent_arrows : Array[Node3D] = []
 
 var death_delta : float = 0
 func _get_intent():
-	
 	var highest_weight = -1
 	var picked_attack : AttackData
 	for i in character.attacks:
@@ -92,7 +90,7 @@ func _get_weights():
 func _ready() -> void:
 	if flipped_text:
 		get_node("UI").scale.x *= -1
-	get_node("Node/SubViewport/VBoxContainer/PanelContainer/MarginContainer/Label").text = char_name
+	get_node("Node/SubViewport/VBoxContainer/PanelContainer/MarginContainer/Label").text = character.name
 	pass
 
 func _process(delta: float) -> void:

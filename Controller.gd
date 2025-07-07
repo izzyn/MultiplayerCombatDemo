@@ -111,27 +111,37 @@ func activate_attack():
 	pass
 func selected_button_changed(old):
 	var attacks = get_node("../Friendly").get_child(selected).character.attacks
-	var nodes = get_node("../Friendly").get_child(selected).get_node("Node/SubViewport/VBoxContainer/Attacks")
-	for attack in nodes.get_children():
-		if selected_button == attack.actual_index:
-			attack.get_node("HBoxContainer/ColorRect").visible = true
-		else:
-			attack.get_node("HBoxContainer/ColorRect").visible = false
+	var characterinfo = get_node("../CanvasLayer/CharacterInfo")
+	for container in characterinfo.attack_containers:
+		for attack in container.get_children():
+			if selected_button == attack.actual_index:
+				attack.get_node("HBoxContainer/ColorRect").visible = true
+			else:
+				attack.get_node("HBoxContainer/ColorRect").visible = false
+		
 	pass
 func interaction_changed(old):
 	var node = get_node("../Friendly").get_children()[selected].get_node("Node/SubViewport/VBoxContainer/Attacks")
 	var charnode : CharacterSprite = get_node("../Friendly").get_children()[selected]
-	for attack in node.get_children():
-		attack.queue_free()
+	var characterinfo = get_node("../CanvasLayer/CharacterInfo")
+	characterinfo.visible = false
+	for container in characterinfo.attack_containers:
+		for child in container.get_children():
+			child.queue_free()
 	if interacting:
+		characterinfo.visible = true
+		characterinfo.character_title_label.text = charnode.character.name
+		characterinfo.tracked_character = charnode.character
 		selected_button = 0
 		for attack in range(charnode.character.attacks.size()):
 			var instance = preload("res://attack_button.tscn").instantiate()
 			instance.visible = false
 			instance.get_node("HBoxContainer/Attack_Name").text = charnode.character.attacks[attack].name
 			instance.actual_index = attack
-			node.add_child(instance)
-			node.move_child(instance, 0)
+			var container = characterinfo.attack_containers[floor(attack / characterinfo.attack_container_limit)]
+			
+			container.add_child(instance)
+			#container.move_child(instance, 0)
 			selected_button_changed(0)
 			instance.get_node("AnimationPlayer").play("Appear")
 			await get_tree().create_timer(0.2).timeout
@@ -159,10 +169,7 @@ func _input(event: InputEvent) -> void:
 			hovering_target = (hovering_target+1) % attack_target_list.size()
 		else:
 			if interacting:
-				if selected_button != 0:
-					selected_button = (selected_button-1) % attacks_length
-				else:
-					selected_button = attacks_length - 1
+				selected_button = (selected_button+1) % attacks_length
 				
 			else:
 				selected = (selected+1) % 4
@@ -174,7 +181,10 @@ func _input(event: InputEvent) -> void:
 				hovering_target = (hovering_target-1) % attack_target_list.size()
 		else:
 			if interacting:
-				selected_button = (selected_button+1) % attacks_length
+				if selected_button != 0:
+					selected_button = (selected_button-1) % attacks_length
+				else:
+					selected_button = attacks_length - 1
 			else:
 				if selected == 0:
 					selected = 3

@@ -1,15 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://c01e760juiihk"]
+[gd_scene load_steps=5 format=3 uid="uid://c01e760juiihk"]
 
-[ext_resource type="PackedScene" uid="uid://c7vyyeuisju4q" path="res://DebuffUI.tscn" id="1_rrc0o"]
+[ext_resource type="PackedScene" uid="uid://dcg1rr5ns8mke" path="res://statbar.tscn" id="2_gvsxp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_glpr6"]
 bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_glpr6"]
 font_size = 64
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pjt0s"]
-bg_color = Color(0.964706, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wfnr8"]
 bg_color = Color(0.878431, 0.486275, 0, 1)
@@ -35,15 +32,6 @@ size_flags_horizontal = 0
 size_flags_vertical = 3
 theme_override_constants/separation = 5
 
-[node name="DebuffUI2" parent="DebuffContainer" instance=ExtResource("1_rrc0o")]
-layout_mode = 2
-
-[node name="DebuffUI" parent="DebuffContainer" instance=ExtResource("1_rrc0o")]
-layout_mode = 2
-
-[node name="DebuffUI3" parent="DebuffContainer" instance=ExtResource("1_rrc0o")]
-layout_mode = 2
-
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 2
 size_flags_vertical = 6
@@ -58,13 +46,8 @@ layout_mode = 2
 text = "What the test"
 label_settings = SubResource("LabelSettings_glpr6")
 
-[node name="HPBar" type="ProgressBar" parent="."]
-custom_minimum_size = Vector2(0, 10)
+[node name="HPBar" parent="." instance=ExtResource("2_gvsxp")]
 layout_mode = 2
-size_flags_vertical = 2
-theme_override_styles/fill = SubResource("StyleBoxFlat_pjt0s")
-value = 50.0
-show_percentage = false
 
 [node name="Timebar" type="ProgressBar" parent="."]
 custom_minimum_size = Vector2(0, 10)

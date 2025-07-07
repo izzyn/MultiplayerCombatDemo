@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcg1rr5ns8mke"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pjt0s"]
+bg_color = Color(0.964706, 0, 0, 1)
+
+[node name="Statbar" type="ProgressBar"]
+custom_minimum_size = Vector2(0, 10)
+size_flags_vertical = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_pjt0s")
+value = 50.0
+show_percentage = false
