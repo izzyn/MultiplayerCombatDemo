@@ -41,6 +41,20 @@ var interacting : bool = false:
 @onready
 var startUIpos = get_node("../Friendly").get_children()[0].get_node("UI").position
 
+var tracked_character : CharacterData
+
+func update_statuses():
+	var status_box = get_node("../CanvasLayer/CharacterInfo").status_container
+	for child in status_box.get_children():
+		child.queue_free()
+	for status in tracked_character._statuses:
+		var status_ui = preload("res://DebuffUI.tscn").instantiate()
+		status_ui.get_node("Label").text = str(status.stacks) + "x"
+		status_ui.texture = status.icon
+		status_box.add_child(status_ui)
+		status_ui.anchor_top
+	pass
+
 func _on_death():
 	pass
 
@@ -62,7 +76,7 @@ func use_activated_attack():
 		var characters : Array[CharacterData] = []
 		for target in picked_targets:
 			characters.append(target.character)
-		attack.use_attack(actor, characters)
+		attack.use_attack(actor, characters, get_node("../Friendly").get_child(selected))
 		set_cooldown()
 		reset_choices()
 	pass
@@ -129,6 +143,9 @@ func interaction_changed(old):
 		for child in container.get_children():
 			child.queue_free()
 	if interacting:
+		tracked_character = charnode.character
+		charnode.character._statuses_changed.connect(update_statuses)
+		update_statuses()
 		characterinfo.visible = true
 		characterinfo.character_title_label.text = charnode.character.name
 		characterinfo.tracked_character = charnode.character

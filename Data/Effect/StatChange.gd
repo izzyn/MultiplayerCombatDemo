@@ -12,7 +12,7 @@ var exceed_default : bool = false
 @export
 var stat_name : String
 
-func enact(user : CharacterData, target : CharacterData, effectiveness : float):
+func enact(user : CharacterData, target : CharacterData, effectiveness : float, caller : CharacterSprite):
 	var stat = target.get(stat_name)
 	var true_amount = amount * effectiveness
 	if type == Type.Value:

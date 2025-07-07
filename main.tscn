@@ -1,4 +1,4 @@
-[gd_scene load_steps=97 format=3 uid="uid://cqrjaicj4lgbm"]
+[gd_scene load_steps=114 format=3 uid="uid://cqrjaicj4lgbm"]
 
 [ext_resource type="PackedScene" uid="uid://d26jdwk2oi2rp" path="res://character.tscn" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://cgpy04sb2ti5k" path="res://CombatScene.gd" id="1_efxa6"]
@@ -14,7 +14,12 @@
 [ext_resource type="Script" uid="uid://xspn7atwwsb3" path="res://Data/Filters/FilterTeam.gd" id="9_efxa6"]
 [ext_resource type="PackedScene" uid="uid://bkivihrkixbmx" path="res://Selection.tscn" id="9_kek77"]
 [ext_resource type="Script" uid="uid://c8mk8e686h6be" path="res://Data/Filters/Filter.gd" id="12_2cqfq"]
+[ext_resource type="Script" uid="uid://dykhrjw5f14x0" path="res://Data/Effect/StatusGrantEffect.gd" id="12_82xsv"]
+[ext_resource type="Script" uid="uid://8pc3rvrfobyj" path="res://Data/secondary_effect.gd" id="13_getpj"]
 [ext_resource type="Script" uid="uid://dbmeokg4ticq2" path="res://Data/Filters/FilterAny.gd" id="13_yaehf"]
+[ext_resource type="Texture2D" uid="uid://b8ab8ftgofddp" path="res://icon.svg" id="14_getpj"]
+[ext_resource type="Script" uid="uid://bdb4e3ya8xhhl" path="res://Data/Effect/Status.gd" id="14_ryguw"]
+[ext_resource type="Script" uid="uid://p5ifm2jhmsds" path="res://Data/Filters/FilterBlank.gd" id="15_ryguw"]
 [ext_resource type="PackedScene" uid="uid://bulhprrgcwgd6" path="res://orb_gauge.tscn" id="16_2cqfq"]
 [ext_resource type="PackedScene" uid="uid://bua7sd4pea636" path="res://CharacterInfo.tscn" id="17_yaehf"]
 
@@ -35,7 +40,7 @@ metadata/_custom_type_script = "uid://xspn7atwwsb3"
 [sub_resource type="Resource" id="Resource_d13ii"]
 script = ExtResource("2_5vw27")
 id = "groupslap"
-name = "groupslap"
+name = ""
 type = 0
 stat = 0
 base_ai_weight = 10.0
@@ -90,6 +95,23 @@ stat_name = "hp"
 amount = -10.0
 metadata/_custom_type_script = "uid://b02gidehqotp1"
 
+[sub_resource type="Resource" id="Resource_ppx11"]
+script = ExtResource("14_ryguw")
+id = "sus"
+stacks = 1
+stackable = false
+modifiers = Array[ExtResource("7_2cqfq")]([])
+additional_effect = Array[ExtResource("13_getpj")]([])
+icon = ExtResource("14_getpj")
+metadata/_custom_type_script = "uid://bdb4e3ya8xhhl"
+
+[sub_resource type="Resource" id="Resource_1yv1y"]
+script = ExtResource("12_82xsv")
+status = SubResource("Resource_ppx11")
+duration = 3.0
+amount = 2.0
+metadata/_custom_type_script = "uid://dykhrjw5f14x0"
+
 [sub_resource type="Resource" id="Resource_kkkcx"]
 script = ExtResource("9_efxa6")
 can_target_dead = false
@@ -109,7 +131,7 @@ cooldown = 5.0
 target_amount = 1
 target_filter = SubResource("Resource_kkkcx")
 scale_stats = Array[ExtResource("7_vivmo")]([])
-effects = Array[ExtResource("3_kek77")]([SubResource("Resource_4c57u")])
+effects = Array[ExtResource("3_kek77")]([SubResource("Resource_4c57u"), SubResource("Resource_1yv1y")])
 modifiers = Array[ExtResource("7_2cqfq")]([])
 metadata/_custom_type_script = "uid://dev3bbs8234ul"
 
@@ -261,6 +283,36 @@ stat_name = "hp"
 amount = -10.0
 metadata/_custom_type_script = "uid://b02gidehqotp1"
 
+[sub_resource type="Resource" id="Resource_phcyf"]
+script = ExtResource("15_ryguw")
+can_target_dead = false
+inverted = false
+metadata/_custom_type_script = "uid://p5ifm2jhmsds"
+
+[sub_resource type="Resource" id="Resource_5dllo"]
+script = ExtResource("7_2cqfq")
+filter = SubResource("Resource_phcyf")
+value = 2.0
+type = 1
+metadata/_custom_type_script = "uid://df3a3xyxvoio3"
+
+[sub_resource type="Resource" id="Resource_wy5fy"]
+script = ExtResource("14_ryguw")
+id = "Blood"
+stacks = 1
+stackable = true
+modifiers = Array[ExtResource("7_2cqfq")]([SubResource("Resource_5dllo")])
+additional_effect = Array[ExtResource("13_getpj")]([])
+icon = ExtResource("14_getpj")
+metadata/_custom_type_script = "uid://bdb4e3ya8xhhl"
+
+[sub_resource type="Resource" id="Resource_gx4rg"]
+script = ExtResource("12_82xsv")
+status = SubResource("Resource_wy5fy")
+duration = 3.0
+amount = 1.0
+metadata/_custom_type_script = "uid://dykhrjw5f14x0"
+
 [sub_resource type="Resource" id="Resource_0odxb"]
 script = ExtResource("9_efxa6")
 can_target_dead = false
@@ -270,7 +322,7 @@ metadata/_custom_type_script = "uid://xspn7atwwsb3"
 [sub_resource type="Resource" id="Resource_kq58d"]
 script = ExtResource("7_2cqfq")
 filter = SubResource("Resource_0odxb")
-value = 10.0
+value = 1.0
 type = 0
 metadata/_custom_type_script = "uid://df3a3xyxvoio3"
 
@@ -306,7 +358,7 @@ cooldown = 0.1
 target_amount = 1
 target_filter = SubResource("Resource_jx0wj")
 scale_stats = Array[ExtResource("7_vivmo")]([])
-effects = Array[ExtResource("3_kek77")]([SubResource("Resource_havpv")])
+effects = Array[ExtResource("3_kek77")]([SubResource("Resource_havpv"), SubResource("Resource_gx4rg")])
 modifiers = Array[ExtResource("7_2cqfq")]([SubResource("Resource_kq58d")])
 metadata/_custom_type_script = "uid://dev3bbs8234ul"
 
@@ -438,6 +490,60 @@ targetability_factor = 1.0
 attacks = Array[ExtResource("2_5vw27")]([SubResource("Resource_xcirw")])
 metadata/_custom_type_script = "uid://nf1cqa55mvbc"
 
+[sub_resource type="Resource" id="Resource_4obbf"]
+script = ExtResource("15_ryguw")
+can_target_dead = false
+inverted = false
+metadata/_custom_type_script = "uid://p5ifm2jhmsds"
+
+[sub_resource type="Resource" id="Resource_ovcoh"]
+script = ExtResource("7_2cqfq")
+filter = SubResource("Resource_4obbf")
+value = 10.0
+type = 1
+metadata/_custom_type_script = "uid://df3a3xyxvoio3"
+
+[sub_resource type="Resource" id="Resource_birbe"]
+script = ExtResource("14_ryguw")
+id = "Blood"
+stacks = 1
+stackable = false
+modifiers = Array[ExtResource("7_2cqfq")]([SubResource("Resource_ovcoh")])
+additional_effect = Array[ExtResource("13_getpj")]([])
+icon = ExtResource("14_getpj")
+metadata/_custom_type_script = "uid://bdb4e3ya8xhhl"
+
+[sub_resource type="Resource" id="Resource_f1p13"]
+script = ExtResource("12_82xsv")
+status = SubResource("Resource_birbe")
+duration = 1.0
+amount = 0.0
+metadata/_custom_type_script = "uid://dykhrjw5f14x0"
+
+[sub_resource type="Resource" id="Resource_34ol3"]
+script = ExtResource("13_yaehf")
+filters = Array[ExtResource("12_2cqfq")]([SubResource("Resource_seu75"), SubResource("Resource_0dhbp")])
+can_target_dead = false
+inverted = false
+metadata/_custom_type_script = "uid://dbmeokg4ticq2"
+
+[sub_resource type="Resource" id="Resource_c2n8d"]
+script = ExtResource("2_5vw27")
+id = "bloodyslap"
+name = "Bloody Slap"
+type = 2
+stat = 0
+base_ai_weight = 10.0
+hits_all = false
+can_target_multiple_times = false
+cooldown = 0.1
+target_amount = 1
+target_filter = SubResource("Resource_34ol3")
+scale_stats = Array[ExtResource("7_vivmo")]([])
+effects = Array[ExtResource("3_kek77")]([SubResource("Resource_havpv"), SubResource("Resource_f1p13")])
+modifiers = Array[ExtResource("7_2cqfq")]([SubResource("Resource_kq58d")])
+metadata/_custom_type_script = "uid://dev3bbs8234ul"
+
 [sub_resource type="Resource" id="Resource_xuqvo"]
 script = ExtResource("6_dg77c")
 value = 100.0
@@ -468,7 +574,7 @@ hp = SubResource("Resource_xuqvo")
 normal_attack = SubResource("Resource_qsp4k")
 speed = SubResource("Resource_jq2sk")
 targetability_factor = 1.0
-attacks = Array[ExtResource("2_5vw27")]([SubResource("Resource_xcirw")])
+attacks = Array[ExtResource("2_5vw27")]([SubResource("Resource_c2n8d")])
 metadata/_custom_type_script = "uid://nf1cqa55mvbc"
 
 [sub_resource type="Resource" id="Resource_facbu"]
@@ -525,7 +631,7 @@ metadata/_custom_type_script = "uid://xspn7atwwsb3"
 [sub_resource type="Resource" id="Resource_qnost"]
 script = ExtResource("2_5vw27")
 id = "ginSkill1"
-name = "Ripple"
+name = "Crash"
 type = 2
 stat = 0
 base_ai_weight = 10.0
@@ -556,7 +662,7 @@ metadata/_custom_type_script = "uid://xspn7atwwsb3"
 [sub_resource type="Resource" id="Resource_wnkbs"]
 script = ExtResource("2_5vw27")
 id = "ginSkill2"
-name = "Crash"
+name = "Ripple"
 type = 2
 stat = 0
 base_ai_weight = 10.0
@@ -749,4 +855,5 @@ move_speed = 10.0
 visible = false
 
 [node name="CharacterInfo" parent="CanvasLayer" instance=ExtResource("17_yaehf")]
+visible = false
 size_flags_vertical = 0

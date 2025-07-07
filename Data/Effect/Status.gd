@@ -5,7 +5,7 @@ class_name Status
 var id : String
 
 @export
-var stacks : int
+var stacks : int = 1
 
 @export
 var stackable : bool

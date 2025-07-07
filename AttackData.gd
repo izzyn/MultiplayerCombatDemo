@@ -43,7 +43,7 @@ var effects : Array[Effect]
 @export
 var modifiers : Array[Modifier]
 
-func use_attack(user : CharacterData, targets : Array[CharacterData]):
+func use_attack(user : CharacterData, targets : Array[CharacterData], caller : CharacterSprite):
 	var effectiveness_dict = {}
 	for target in targets:
 		effectiveness_dict[target] = 1
@@ -76,8 +76,9 @@ func use_attack(user : CharacterData, targets : Array[CharacterData]):
 		var total_effects : Array[Effect] = []
 		total_effects.append_array(effects)
 		for status in user._statuses:
-			total_effects.append_array(status.additional_effect)
+			if status.additional_effect:
+				total_effects.append_array(status.additional_effect)
 		for effect in total_effects:
 			print(effectiveness_dict[target])
-			effect.enact(user, target, effectiveness_dict[target])
+			effect.enact(user, target, effectiveness_dict[target], caller)
 		pass

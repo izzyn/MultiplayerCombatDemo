@@ -29,6 +29,8 @@ var intent_targets : Array[CharacterData] = []
 var intent_arrows : Array[Node3D] = []
 
 var death_delta : float = 0
+
+
 func _get_intent():
 	var highest_weight = -1
 	var picked_attack : AttackData
@@ -91,17 +93,33 @@ func _ready() -> void:
 	if flipped_text:
 		get_node("UI").scale.x *= -1
 	get_node("Node/SubViewport/VBoxContainer/PanelContainer/MarginContainer/Label").text = character.name
+	character._statuses_changed.connect(update_statuses)
 	pass
 
+func update_statuses():
+	var status_box = get_node("Node/SubViewport/VBoxContainer/DebuffContainer")
+	for child in status_box.get_children():
+		child.queue_free()
+	for status in character._statuses:
+		var status_ui = preload("res://DebuffUI.tscn").instantiate()
+		status_ui.get_node("Label").text = str(status.stacks) + "x"
+		status_ui.texture = status.icon
+		status_box.add_child(status_ui)
+	pass
+
+func reset_attack():
+	intent_attack = null
+	for i in intent_arrows:
+		i.queue_free()
+	intent_arrows.clear()
+		
+	intent_targets.clear()
+	pass
 func _process(delta: float) -> void:
 	if character.hp.value == 0:
 		var node3d : Sprite3D = get_node("Sprite3D4")
 		node3d.rotation.y = lerpf(node3d.rotation.y,PI*10,delta)
-		for arrow in intent_arrows:
-			arrow.queue_free()
-		intent_arrows.clear()
-		intent_targets.clear()
-		intent_attack = null
+		reset_attack()
 		if node3d.rotation.y > PI*8:
 			visible = false
 		#node3d.material_override.set_shader_parameter("enable_effect", true)
@@ -113,15 +131,10 @@ func _process(delta: float) -> void:
 	if intent_targets.size() == 0 and character and AI_Controlled and character.hp.value != 0:
 		_get_intent()
 	elif intent_targets.size() != 0 and cooldown <= 0 and AI_Controlled:
-		intent_attack.use_attack(character, intent_targets)
+		intent_attack.use_attack(character, intent_targets, self)
 		last_max_cooldown = intent_attack.cooldown
 		cooldown = last_max_cooldown
-		intent_attack = null
-		for i in intent_arrows:
-			i.queue_free()
-		intent_arrows.clear()
-		
-		intent_targets.clear()
+		reset_attack()
 	if !intent_arrows.size() and intent_targets.size() and cooldown <= 3:
 		for target in intent_targets:
 			var friendly = get_node("../../Friendly").get_children()
