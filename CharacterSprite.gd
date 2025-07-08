@@ -69,6 +69,7 @@ func _get_intent():
 	for taregets_left in range(picked_attack.target_amount):
 		var highest_weight_target = -1
 		var picked_target : CharacterData
+		var weight_list = []
 		for target in possible_targets:
 			#Ensures the enemy tries to not kill itself or its allies :p
 			var hostility_factor = 1
@@ -76,11 +77,9 @@ func _get_intent():
 				hostility_factor = 0.01
 			elif target.team == character.team and picked_attack.type != picked_attack.Type.Buff:
 				hostility_factor = 0.01
-			var weight = target.targetability_factor * rng.randf_range(1,1.5) * hostility_factor
-			if weight > highest_weight_target:
-				highest_weight_target = weight
-				picked_target = target
-		intent_targets.append(picked_target)
+			var weight = target.targetability_factor * hostility_factor
+			weight_list.append([weight, target])
+		intent_targets.append(Helper.random_list_get(weight_list))
 		if !picked_attack.can_target_multiple_times:
 			possible_targets.erase(picked_target)
 		

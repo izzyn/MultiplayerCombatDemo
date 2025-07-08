@@ -1,4 +1,4 @@
-[gd_scene load_steps=114 format=3 uid="uid://cqrjaicj4lgbm"]
+[gd_scene load_steps=118 format=3 uid="uid://cqrjaicj4lgbm"]
 
 [ext_resource type="PackedScene" uid="uid://d26jdwk2oi2rp" path="res://character.tscn" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://cgpy04sb2ti5k" path="res://CombatScene.gd" id="1_efxa6"]
@@ -544,6 +544,42 @@ effects = Array[ExtResource("3_kek77")]([SubResource("Resource_havpv"), SubResou
 modifiers = Array[ExtResource("7_2cqfq")]([SubResource("Resource_kq58d")])
 metadata/_custom_type_script = "uid://dev3bbs8234ul"
 
+[sub_resource type="Resource" id="Resource_5yh34"]
+script = ExtResource("9_efxa6")
+can_target_dead = false
+inverted = true
+metadata/_custom_type_script = "uid://xspn7atwwsb3"
+
+[sub_resource type="Resource" id="Resource_pjuso"]
+script = ExtResource("7_2cqfq")
+filter = SubResource("Resource_5yh34")
+value = 0.0
+type = 0
+metadata/_custom_type_script = "uid://df3a3xyxvoio3"
+
+[sub_resource type="Resource" id="Resource_23xmf"]
+script = ExtResource("15_ryguw")
+can_target_dead = false
+inverted = false
+metadata/_custom_type_script = "uid://p5ifm2jhmsds"
+
+[sub_resource type="Resource" id="Resource_swlj1"]
+script = ExtResource("2_5vw27")
+id = "rage"
+name = "rage"
+type = 0
+stat = 0
+base_ai_weight = 10.0
+hits_all = false
+can_target_multiple_times = false
+cooldown = 5.0
+target_amount = 1
+target_filter = SubResource("Resource_23xmf")
+scale_stats = Array[ExtResource("7_vivmo")]([])
+effects = Array[ExtResource("3_kek77")]([])
+modifiers = Array[ExtResource("7_2cqfq")]([SubResource("Resource_pjuso")])
+metadata/_custom_type_script = "uid://dev3bbs8234ul"
+
 [sub_resource type="Resource" id="Resource_xuqvo"]
 script = ExtResource("6_dg77c")
 value = 100.0
@@ -574,7 +610,7 @@ hp = SubResource("Resource_xuqvo")
 normal_attack = SubResource("Resource_qsp4k")
 speed = SubResource("Resource_jq2sk")
 targetability_factor = 1.0
-attacks = Array[ExtResource("2_5vw27")]([SubResource("Resource_c2n8d")])
+attacks = Array[ExtResource("2_5vw27")]([SubResource("Resource_c2n8d"), SubResource("Resource_swlj1")])
 metadata/_custom_type_script = "uid://nf1cqa55mvbc"
 
 [sub_resource type="Resource" id="Resource_facbu"]

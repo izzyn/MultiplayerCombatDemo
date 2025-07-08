@@ -77,7 +77,10 @@ func use_attack(user : CharacterData, targets : Array[CharacterData], caller : C
 		total_effects.append_array(effects)
 		for status in user._statuses:
 			if status.additional_effect:
-				total_effects.append_array(status.additional_effect)
+				for effect in status.additional_effect:
+					if target in effect.condition.eval(user, [target]):
+						total_effects.append_array(effect.effects)
+					
 		for effect in total_effects:
 			print(effectiveness_dict[target])
 			effect.enact(user, target, effectiveness_dict[target], caller)
