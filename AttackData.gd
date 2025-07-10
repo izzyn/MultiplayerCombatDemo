@@ -38,7 +38,9 @@ var scale_stats : Array[ScaleFactor]
 @export
 var effects : Array[Effect]
 
-
+@export_group("Extra effects")
+@export
+var additional_effects : Array[SecondaryEffect]
 ## Modifiers in this field can only be offensive, defensive modifiers in this field will simply work asif disabled.
 @export
 var modifiers : Array[Modifier]
@@ -82,6 +84,5 @@ func use_attack(user : CharacterData, targets : Array[CharacterData], caller : C
 						total_effects.append_array(effect.effects)
 					
 		for effect in total_effects:
-			print(effectiveness_dict[target])
 			effect.enact(user, target, effectiveness_dict[target], caller)
 		pass

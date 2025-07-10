@@ -4,8 +4,12 @@ class_name Status
 @export
 var id : String
 
+var stacks:
+	get():
+		return len(_stack_sources)
+
 @export
-var stacks : int = 1
+var _stack_sources : Array[int]
 
 @export
 var stackable : bool

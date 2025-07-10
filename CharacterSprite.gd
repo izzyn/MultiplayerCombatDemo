@@ -20,7 +20,7 @@ var shake_fade_time : float = 5
 var oldhp = -1
 
 var last_max_cooldown : float = 3
-
+var intent_cooldown : float = 0
 var cooldown : float = 3
 var rng = RandomNumberGenerator.new()
 # INTENT
@@ -66,7 +66,10 @@ func _get_intent():
 	if picked_attack.hits_all:
 		intent_targets = possible_targets
 		pass
-	for taregets_left in range(picked_attack.target_amount):
+	if len(possible_targets) == 0:
+		cooldown += 1
+		intent_cooldown = 1
+	for targets_left in range(min(picked_attack.target_amount, len(possible_targets))):
 		var highest_weight_target = -1
 		var picked_target : CharacterData
 		var weight_list = []
@@ -127,7 +130,7 @@ func _process(delta: float) -> void:
 		#if death_delta > 3:
 		#	node3d.visible = false
 		
-	if intent_targets.size() == 0 and character and AI_Controlled and character.hp.value != 0:
+	if intent_targets.size() == 0 and character and AI_Controlled and character.hp.value != 0 and intent_cooldown <= 0:
 		_get_intent()
 	elif intent_targets.size() != 0 and cooldown <= 0 and AI_Controlled:
 		intent_attack.use_attack(character, intent_targets, self)
@@ -152,6 +155,7 @@ func _process(delta: float) -> void:
 			node.start_pos = global_position
 			node.get_node("Start2").global_position = global_position
 			intent_arrows.append(node)
+	intent_cooldown -= delta
 	cooldown -= delta
 	if oldhp == -1:
 		oldhp=character.hp.value
