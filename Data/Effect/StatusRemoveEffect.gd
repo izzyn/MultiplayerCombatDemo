@@ -10,16 +10,16 @@ var status_id : String
 
 @export
 var clears_all : bool = false
-func enact(user : CharacterData, target : CharacterData, effectiveness : float, caller : CharacterSprite):
-	for index in range(target._statuses.size()):
-		if target._statuses[index].id == status_id or clears_all:
-			if target._statuses[index].stacks > amount and amount != -1:
+func enact(user : CharacterAgent, target : CharacterAgent, effectiveness : float):
+	for index in range(target.data._statuses.size()):
+		if target.data._statuses[index].id == status_id or clears_all:
+			if target.data._statuses[index].stacks > amount and amount != -1:
 				for i in range(amount):
-					if target._statuses[index].stacks > 1:
-						target._statuses[index]._stack_sources.pop_back()
+					if target.data._statuses[index].stacks > 1:
+						target.data._statuses[index]._stack_sources.pop_back()
 					else:
-						target._statuses.erase(target._statuses[index])
+						target.data._statuses.erase(target.data._statuses[index])
 			else:
-				target._statuses.erase(target._statuses[index])
-			target._statuses_changed.emit()
+				target.data._statuses.erase(target._statuses[index])
+			target.data._statuses_changed.emit()
 	pass

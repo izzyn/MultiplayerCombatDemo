@@ -20,6 +20,7 @@ var base_ai_weight : float = 10
 @export
 var hits_all : bool = false
 
+##
 @export
 var can_target_multiple_times : bool = false
 
@@ -45,18 +46,18 @@ var additional_effects : Array[SecondaryEffect]
 @export
 var modifiers : Array[Modifier]
 
-func use_attack(user : CharacterData, targets : Array[CharacterData], caller : CharacterSprite):
+func use_attack(user : CharacterAgent, targets : Array[CharacterAgent]):
 	var effectiveness_dict = {}
 	for target in targets:
 		effectiveness_dict[target] = 1
 		for scale in scale_stats:
-			var value = user.get(scale.stat_name).value/100
+			var value = user.data.get(scale.stat_name).value/100
 			effectiveness_dict[target] += value * scale.scale_weight
 	
 	var total_modifiers : Array[Modifier] = []
 	total_modifiers.append_array(modifiers)
 	
-	for status in user._statuses:
+	for status in user.data._statuses:
 		total_modifiers.append_array(status.modifiers)
 	
 	for mod in total_modifiers:
@@ -66,10 +67,10 @@ func use_attack(user : CharacterData, targets : Array[CharacterData], caller : C
 				effectiveness_dict[aff] *= mod.value
 					
 	for target in targets:
-		for status in target._statuses:
+		for status in target.data._statuses:
 			for mod in status.modifiers:
 				if mod.type == Modifier.Type.Defensive:
-					var arr : Array[CharacterData] = []
+					var arr : Array[CharacterAgent] = []
 					arr.append(user)
 					var use = len(mod.filter.eval(target, arr)) == 1
 					if use: effectiveness_dict[target] *= mod.value
@@ -77,12 +78,12 @@ func use_attack(user : CharacterData, targets : Array[CharacterData], caller : C
 	for target in targets:
 		var total_effects : Array[Effect] = []
 		total_effects.append_array(effects)
-		for status in user._statuses:
+		for status in user.data._statuses:
 			if status.additional_effect:
 				for effect in status.additional_effect:
 					if target in effect.condition.eval(user, [target]):
 						total_effects.append_array(effect.effects)
 					
 		for effect in total_effects:
-			effect.enact(user, target, effectiveness_dict[target], caller)
+			effect.enact(user, target, effectiveness_dict[target])
 		pass

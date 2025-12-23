@@ -8,7 +8,6 @@ var stacks:
 	get():
 		return len(_stack_sources)
 
-@export
 var _stack_sources : Array[int]
 
 @export

@@ -12,13 +12,15 @@ config_version=5
 
 config/name="CombatDemo"
 run/main_scene="uid://cqrjaicj4lgbm"
-config/features=PackedStringArray("4.4", "Forward Plus")
+config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 GlobalData="*res://global_Data.tscn"
 Helper="*res://helper.gd"
+Signals="*res://Signals.gd"
+CombatSimulator="*res://combat_simulator.tscn"
 
 [gui]
 

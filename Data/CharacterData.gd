@@ -44,5 +44,4 @@ var attacks : Array[AttackData]
 var sprite : CharacterSprite
 
 var _statuses : Array[Status]
-
 signal _statuses_changed

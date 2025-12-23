@@ -1,66 +1,44 @@
-[gd_resource type="Resource" script_class="CharacterData" load_steps=13 format=3 uid="uid://bo34in26x1mc3"]
+[gd_resource type="Resource" script_class="CharacterData" load_steps=14 format=3 uid="uid://bo34in26x1mc3"]
 
 [ext_resource type="Script" uid="uid://dev3bbs8234ul" path="res://AttackData.gd" id="1_px7s8"]
 [ext_resource type="Script" uid="uid://w7xci5q84hvk" path="res://Data/Stat.gd" id="2_glowy"]
+[ext_resource type="Script" uid="uid://8pc3rvrfobyj" path="res://Data/secondary_effect.gd" id="2_icqi5"]
 [ext_resource type="Script" uid="uid://chal40igpet32" path="res://Data/Effect/Effect.gd" id="2_wjwfd"]
-[ext_resource type="Script" uid="uid://nf1cqa55mvbc" path="res://CharacterData.gd" id="2_xcirw"]
+[ext_resource type="Script" uid="uid://nf1cqa55mvbc" path="res://Data/CharacterData.gd" id="2_xcirw"]
 [ext_resource type="Script" uid="uid://b02gidehqotp1" path="res://Data/Effect/StatChange.gd" id="3_wjwfd"]
-[ext_resource type="Script" uid="uid://xspn7atwwsb3" path="res://Data/Filters/FilterTeam.gd" id="4_j34sr"]
+[ext_resource type="Script" uid="uid://df3a3xyxvoio3" path="res://Data/Modifier.gd" id="5_8isu2"]
+[ext_resource type="Script" uid="uid://cvicm6h3smnkv" path="res://Data/ScaleFactor.gd" id="6_didc0"]
 
 [sub_resource type="Resource" id="Resource_havpv"]
 script = ExtResource("3_wjwfd")
-type = 0
-amount = -10.0
-exceed_default = false
 stat_name = "hp"
+amount = -10.0
 metadata/_custom_type_script = "uid://b02gidehqotp1"
-
-[sub_resource type="Resource" id="Resource_jjsfv"]
-script = ExtResource("4_j34sr")
-inverted = true
-metadata/_custom_type_script = "uid://xspn7atwwsb3"
 
 [sub_resource type="Resource" id="Resource_xcirw"]
 script = ExtResource("1_px7s8")
 id = "slap"
 name = "Slap"
 type = 2
-stat = 0
-base_ai_weight = 10.0
-hits_all = false
-can_target_multiple_times = false
-cooldown = 5.0
-targets = 1
-target = SubResource("Resource_jjsfv")
 effects = Array[ExtResource("2_wjwfd")]([SubResource("Resource_havpv")])
 metadata/_custom_type_script = "uid://dev3bbs8234ul"
 
 [sub_resource type="Resource" id="Resource_wjwfd"]
 script = ExtResource("2_glowy")
-value = 100.0
-default = 100.0
-mod = 1.0
 metadata/_custom_type_script = "uid://w7xci5q84hvk"
 
 [sub_resource type="Resource" id="Resource_j34sr"]
 script = ExtResource("2_glowy")
-value = 100.0
-default = 100.0
-mod = 1.0
 metadata/_custom_type_script = "uid://w7xci5q84hvk"
 
 [sub_resource type="Resource" id="Resource_didc0"]
 script = ExtResource("2_glowy")
-value = 100.0
-default = 100.0
-mod = 1.0
 metadata/_custom_type_script = "uid://w7xci5q84hvk"
 
 [resource]
 script = ExtResource("2_xcirw")
 id = "testchar"
 name = "Test Character"
-team = false
 hp = SubResource("Resource_wjwfd")
 normal_attack = SubResource("Resource_j34sr")
 speed = SubResource("Resource_didc0")

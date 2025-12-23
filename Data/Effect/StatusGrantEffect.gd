@@ -21,25 +21,25 @@ func on_status_granted(target : CharacterData, caller, id : int):
 func grant_stacks(status: Status, id : int):
 	for i in range(amount):
 		status._stack_sources.append(id)
-	
-func enact(user : CharacterData, target : CharacterData, effectiveness : float, caller : CharacterSprite):
+
+func enact(user : CharacterAgent, target : CharacterAgent, effectiveness : float):
 	var attack_id = Helper.get_uuid()
-	for t_status in target._statuses:
+	for t_status in target.data._statuses:
 		if t_status.id == status.id:
 			if status.stackable:
 				grant_stacks(t_status, attack_id)
-				on_status_granted(target, caller, attack_id)
+				on_status_granted(target.data, user, attack_id)
 			return
 	
 	var n_status = status.duplicate()
-	target._statuses.append(n_status)
+	target.data._statuses.append(n_status)
 	grant_stacks(n_status, attack_id)
-	on_status_granted(target, caller, attack_id)
+	on_status_granted(target.data, user, attack_id)
 	pass
 
-func remove_status(target : CharacterData, id : int):
+func remove_status(target : CharacterAgent, id : int):
 	var found_status
-	for t_status in target._statuses:
+	for t_status in target.data._statuses:
 		if t_status.id == status.id:
 			found_status = t_status
 			break 
@@ -48,6 +48,6 @@ func remove_status(target : CharacterData, id : int):
 			if found_status.stacks > 1:
 				found_status._stack_sources.erase(id)
 			else:
-				target._statuses.erase(found_status)
-		target._statuses_changed.emit()
+				target.data._statuses.erase(found_status)
+		target.data._statuses_changed.emit()
 	pass

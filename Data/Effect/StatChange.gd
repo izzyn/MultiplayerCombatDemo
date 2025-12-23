@@ -15,8 +15,8 @@ var stat_name : String
 @export
 var amount : float
 
-func enact(user : CharacterData, target : CharacterData, effectiveness : float, caller : CharacterSprite):
-	var stat = target.get(stat_name)
+func enact(user : CharacterAgent, target : CharacterAgent, effectiveness : float):
+	var stat = target.data.get(stat_name)
 	var true_amount = amount * effectiveness
 	if type == Type.Value:
 		if exceed_default:
@@ -25,6 +25,7 @@ func enact(user : CharacterData, target : CharacterData, effectiveness : float, 
 			stat.value = clamp(stat.value+true_amount,0,stat.default)
 	elif type == Type.Default:
 		stat.default += true_amount
-		
-
+	
+	if true_amount == 0 and target.linked_sprite:
+		target.linked_sprite.stat_changed()
 	pass

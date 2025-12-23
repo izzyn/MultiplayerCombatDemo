@@ -1,84 +1,58 @@
-[gd_scene load_steps=15 format=3 uid="uid://b4l2iqg50o5t7"]
+[gd_scene load_steps=18 format=3 uid="uid://b4l2iqg50o5t7"]
 
 [ext_resource type="Script" uid="uid://6nlvkv7ihk2l" path="res://global_data.gd" id="1_skedm"]
-[ext_resource type="Script" uid="uid://nf1cqa55mvbc" path="res://CharacterData.gd" id="2_lyvwc"]
+[ext_resource type="Script" uid="uid://nf1cqa55mvbc" path="res://Data/CharacterData.gd" id="2_lyvwc"]
 [ext_resource type="Script" uid="uid://dev3bbs8234ul" path="res://AttackData.gd" id="3_uldo6"]
+[ext_resource type="Script" uid="uid://8pc3rvrfobyj" path="res://Data/secondary_effect.gd" id="4_oobpn"]
 [ext_resource type="Script" uid="uid://w7xci5q84hvk" path="res://Data/Stat.gd" id="4_uldo6"]
 [ext_resource type="Script" uid="uid://chal40igpet32" path="res://Data/Effect/Effect.gd" id="4_xko1c"]
+[ext_resource type="Script" uid="uid://df3a3xyxvoio3" path="res://Data/Modifier.gd" id="6_nbe0f"]
+[ext_resource type="Script" uid="uid://cvicm6h3smnkv" path="res://Data/ScaleFactor.gd" id="7_48yt8"]
 
 [sub_resource type="Resource" id="Resource_xko1c"]
 script = ExtResource("3_uldo6")
-id = ""
-name = ""
 type = 1
-hits_all = false
-can_target_multiple_times = false
-targets = 1
-effects = Array[ExtResource("4_xko1c")]([])
 metadata/_custom_type_script = "uid://dev3bbs8234ul"
 
 [sub_resource type="Resource" id="Resource_2a7t3"]
 script = ExtResource("4_uldo6")
-value = 100.0
-default = 100.0
-mod = 1.0
-metadata/_custom_type_script = "uid://w7xci5q84hvk"
-
-[sub_resource type="Resource" id="Resource_oobpn"]
-script = ExtResource("4_uldo6")
-value = 100.0
-default = 100.0
-mod = 1.0
-metadata/_custom_type_script = "uid://w7xci5q84hvk"
-
-[sub_resource type="Resource" id="Resource_nbe0f"]
-script = ExtResource("4_uldo6")
-value = 100.0
-default = 100.0
-mod = 1.0
 metadata/_custom_type_script = "uid://w7xci5q84hvk"
 
 [sub_resource type="Resource" id="Resource_48yt8"]
 script = ExtResource("4_uldo6")
-value = 100.0
-default = 100.0
-mod = 1.0
 metadata/_custom_type_script = "uid://w7xci5q84hvk"
 
 [sub_resource type="Resource" id="Resource_vkuqw"]
 script = ExtResource("4_uldo6")
-value = 100.0
-default = 100.0
-mod = 1.0
+metadata/_custom_type_script = "uid://w7xci5q84hvk"
+
+[sub_resource type="Resource" id="Resource_oobpn"]
+script = ExtResource("4_uldo6")
+metadata/_custom_type_script = "uid://w7xci5q84hvk"
+
+[sub_resource type="Resource" id="Resource_nbe0f"]
+script = ExtResource("4_uldo6")
 metadata/_custom_type_script = "uid://w7xci5q84hvk"
 
 [sub_resource type="Resource" id="Resource_armbh"]
 script = ExtResource("4_uldo6")
-value = 100.0
-default = 100.0
-mod = 1.0
 metadata/_custom_type_script = "uid://w7xci5q84hvk"
 
 [sub_resource type="Resource" id="Resource_y0q0t"]
 script = ExtResource("2_lyvwc")
 id = "test"
 name = "Test"
-team = false
 hp = SubResource("Resource_2a7t3")
 normal_attack = SubResource("Resource_oobpn")
-special_attack = SubResource("Resource_48yt8")
+magic_attack = SubResource("Resource_48yt8")
 normal_defence = SubResource("Resource_nbe0f")
-special_defence = SubResource("Resource_vkuqw")
+magic_defence = SubResource("Resource_vkuqw")
 speed = SubResource("Resource_armbh")
 attacks = Array[ExtResource("3_uldo6")]([SubResource("Resource_xko1c")])
 metadata/_custom_type_script = "uid://nf1cqa55mvbc"
 
 [sub_resource type="Resource" id="Resource_uldo6"]
 script = ExtResource("2_lyvwc")
-id = ""
-name = ""
-team = false
-attacks = Array[ExtResource("3_uldo6")]([])
 metadata/_custom_type_script = "uid://nf1cqa55mvbc"
 
 [node name="GlobalData" type="Node"]

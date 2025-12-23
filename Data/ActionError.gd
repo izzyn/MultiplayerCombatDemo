@@ -1,0 +1,2 @@
+extends CharacterAction
+class_name ActionError

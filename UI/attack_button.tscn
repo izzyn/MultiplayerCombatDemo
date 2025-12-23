@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://v6kl503qmt83"]
 
-[ext_resource type="Script" uid="uid://c41l1jy0ijw4i" path="res://AttackButton.gd" id="1_u3kok"]
+[ext_resource type="Script" uid="uid://c41l1jy0ijw4i" path="res://UI/AttackButton.gd" id="1_u3kok"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sk2pm"]
 bg_color = Color(0, 0, 0, 1)

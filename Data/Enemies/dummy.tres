@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="CharacterData" load_steps=10 format=3 uid="uid://ck5x4dmlarbd6"]
 
 [ext_resource type="Script" uid="uid://dev3bbs8234ul" path="res://AttackData.gd" id="1_dyswg"]
-[ext_resource type="Script" uid="uid://nf1cqa55mvbc" path="res://CharacterData.gd" id="2_6nr52"]
+[ext_resource type="Script" uid="uid://nf1cqa55mvbc" path="res://Data/CharacterData.gd" id="2_6nr52"]
 [ext_resource type="Script" uid="uid://w7xci5q84hvk" path="res://Data/Stat.gd" id="2_qthsa"]
 
 [sub_resource type="Resource" id="Resource_uk51j"]
