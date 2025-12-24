@@ -1,4 +1,4 @@
-[gd_scene load_steps=92 format=3 uid="uid://cqrjaicj4lgbm"]
+[gd_scene load_steps=98 format=3 uid="uid://cqrjaicj4lgbm"]
 
 [ext_resource type="PackedScene" uid="uid://d26jdwk2oi2rp" path="res://character.tscn" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://cgpy04sb2ti5k" path="res://CombatScene.gd" id="1_efxa6"]
@@ -15,6 +15,9 @@
 [ext_resource type="Script" uid="uid://nf1cqa55mvbc" path="res://Data/CharacterData.gd" id="7_ycdy4"]
 [ext_resource type="PackedScene" uid="uid://bkivihrkixbmx" path="res://Selection.tscn" id="9_kek77"]
 [ext_resource type="Script" uid="uid://dr13qsl51h2m1" path="res://Controllers/AIController.gd" id="11_2cqfq"]
+[ext_resource type="Script" uid="uid://dykhrjw5f14x0" path="res://Data/Effect/StatusGrantEffect.gd" id="11_getpj"]
+[ext_resource type="Texture2D" uid="uid://b8ab8ftgofddp" path="res://icon.svg" id="12_ryguw"]
+[ext_resource type="Script" uid="uid://bdb4e3ya8xhhl" path="res://Data/Effect/Status.gd" id="13_d13ii"]
 [ext_resource type="Script" uid="uid://8pc3rvrfobyj" path="res://Data/secondary_effect.gd" id="13_getpj"]
 [ext_resource type="PackedScene" uid="uid://bulhprrgcwgd6" path="res://orb_gauge.tscn" id="16_2cqfq"]
 [ext_resource type="PackedScene" uid="uid://bua7sd4pea636" path="res://CharacterInfo.tscn" id="17_yaehf"]
@@ -34,6 +37,25 @@ script = ExtResource("2_5vw27")
 name = "Slap"
 type = 1
 effects = Array[ExtResource("3_kek77")]([SubResource("Resource_c2n8d")])
+metadata/_custom_type_script = "uid://dev3bbs8234ul"
+
+[sub_resource type="Resource" id="Resource_gx4rg"]
+script = ExtResource("13_d13ii")
+id = "two:)"
+stackable = true
+icon = ExtResource("12_ryguw")
+metadata/_custom_type_script = "uid://bdb4e3ya8xhhl"
+
+[sub_resource type="Resource" id="Resource_5dllo"]
+script = ExtResource("11_getpj")
+status = SubResource("Resource_gx4rg")
+duration = 3
+metadata/_custom_type_script = "uid://dykhrjw5f14x0"
+
+[sub_resource type="Resource" id="Resource_wy5fy"]
+script = ExtResource("2_5vw27")
+name = "bloodslap"
+effects = Array[ExtResource("3_kek77")]([SubResource("Resource_5dllo")])
 metadata/_custom_type_script = "uid://dev3bbs8234ul"
 
 [sub_resource type="Resource" id="Resource_w48qg"]
@@ -71,7 +93,7 @@ magic_attack = SubResource("Resource_vivmo")
 normal_defence = SubResource("Resource_074og")
 magic_defence = SubResource("Resource_2cqfq")
 speed = SubResource("Resource_cegan")
-attacks = Array[ExtResource("2_5vw27")]([SubResource("Resource_xko1c")])
+attacks = Array[ExtResource("2_5vw27")]([SubResource("Resource_xko1c"), SubResource("Resource_wy5fy")])
 metadata/_custom_type_script = "uid://nf1cqa55mvbc"
 
 [sub_resource type="Resource" id="Resource_qsp4k"]
