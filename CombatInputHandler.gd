@@ -8,12 +8,13 @@ var focused_character : CharacterAgent:
 	set(value):
 		if focused_character and focused_character.linked_sprite:
 			if value and value.linked_sprite:
-				focused_character.linked_sprite.focus_changed(value)
+				focused_character.linked_sprite.character_focus_changed(value)
 			else:
-				focused_character.linked_sprite.defocused()
+				focused_character.linked_sprite.character_defocused()
 		if value and value.linked_sprite:
 			value.linked_sprite.character_focused()
 		focused_character = value
+
 var selected_character : CharacterAgent:
 	set(value):
 		if selected_character and selected_character.linked_sprite:
@@ -21,18 +22,25 @@ var selected_character : CharacterAgent:
 		if value and value.linked_sprite:
 			value.linked_sprite.character_selected()
 		selected_character = value
+
 var focused_target : CharacterAgent:
 	set(value):
+		if value == focused_target:
+			pass
 		if focused_target and focused_target.linked_sprite:
 			if value and value.linked_sprite:
-				focused_target.linked_sprite.attack_focus_changed(value)
+				focused_target.linked_sprite.attack_target_focus_changed(value)
 			else:
-				focused_target.linked_sprite.attack_defocused()
+				focused_target.linked_sprite.attack_target_defocused()
 		if value and value.linked_sprite:
-			value.linked_sprite.attack_focused()
-		
+			value.linked_sprite.attack_target_focused()
 		focused_target = value
-var attack_index : int
+
+var attack_index : int:
+	set(value):
+		if value == attack_index:
+			pass
+
 var target_index : int
 var character_index : int
 var selected_attack : AttackData
@@ -94,6 +102,8 @@ func _input(event: InputEvent) -> void:
 			else:
 				possible_targets = all_characters
 			attack_index = 0
+			if possible_targets.size() == 0:
+				selected_attack = null
 			focused_target = possible_targets[0] 
 		else:
 			selected_character = focused_character

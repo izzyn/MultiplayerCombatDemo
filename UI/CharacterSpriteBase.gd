@@ -19,16 +19,19 @@ func character_deselected():
 func character_focused():
 	pass
 
-func focus_changed(new_focus : CharacterAgent):
+func character_focus_changed(new_focus : CharacterAgent):
 	pass
 
-func defocused():
+func character_defocused():
 	pass
 
 func attack_focused():
 	pass
 
-func attack_focus_changed(new_focus : CharacterAgent):
+func attack_target_focus_changed(new_focus : CharacterAgent):
+	pass
+
+func attack_index_changed(new_index : int):
 	pass
 
 func attack_defocused():

@@ -13,11 +13,15 @@ func eval(actor: CharacterAgent, characters : Array[CharacterAgent]) -> Array[Ch
 	var agent_dict : Dictionary[CharacterData, CharacterAgent] = {}
 	for agent in characters:
 		agent_dict[agent.data] = agent
-	var filtered = _eval(actor.data, characters.map(func(x): return x.data))
+	var data : Array[CharacterData] = []
+	for i in characters:
+		data.append(i.data)
+	print(agent_dict)
+	var filtered = _eval(actor.data, data)
 	var actual : Array[CharacterData] = []
 	var result : Array[CharacterAgent] = []
 	if inverted:
-		for i in characters:
+		for i in data:
 			if i not in filtered:
 				actual.append(i)
 	else:
@@ -28,4 +32,3 @@ func eval(actor: CharacterAgent, characters : Array[CharacterAgent]) -> Array[Ch
 	for i in actual:
 		result.append(agent_dict[i])
 	return result
-	pass

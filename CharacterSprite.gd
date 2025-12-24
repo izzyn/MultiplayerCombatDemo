@@ -16,17 +16,18 @@ var oldhp = -1
 @onready
 var moving_selection = get_parent().get_parent().get_node("Selection")
 
-func attack_selected():
+func attack_target_selected():
 	selection = preload("res://Selection.tscn").instantiate()
 	get_parent().get_parent().get_node("Selections").add_child(selection)
 	selection.position = global_position
 	selection.target = self
 
-func attack_deselected():
+func attack_target_deselected():
 	print("A")
 	selection.queue_free()
 pass
-func attack_focused():
+
+func attack_target_focused():
 	moving_selection.visible = true
 	moving_selection.target = self
 pass
@@ -36,11 +37,11 @@ func character_focused():
 	moving_selection.target = self
 pass
 
-func defocused():
+func character_defocused():
 	moving_selection.visible = false
 pass
 
-func attack_defocused():
+func attack_target_defocused():
 	moving_selection.visible = false
 	pass
 

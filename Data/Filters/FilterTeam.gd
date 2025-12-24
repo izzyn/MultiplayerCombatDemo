@@ -7,4 +7,3 @@ func _eval(actor: CharacterData, characters : Array[CharacterData]) -> Array[Cha
 		if i.team == actor.team:
 			list.append(i)
 	return list
-	pass
