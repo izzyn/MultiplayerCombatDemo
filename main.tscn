@@ -1,4 +1,4 @@
-[gd_scene load_steps=103 format=3 uid="uid://cqrjaicj4lgbm"]
+[gd_scene load_steps=105 format=3 uid="uid://cqrjaicj4lgbm"]
 
 [ext_resource type="PackedScene" uid="uid://d26jdwk2oi2rp" path="res://character.tscn" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://cgpy04sb2ti5k" path="res://CombatScene.gd" id="1_efxa6"]
@@ -443,6 +443,13 @@ sky = SubResource("Sky_h2yge")
 ambient_light_source = 3
 ambient_light_color = Color(0.206035, 0.434083, 1, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ryguw"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d13ii"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 20
+
 [node name="Main" type="Node3D"]
 script = ExtResource("1_efxa6")
 
@@ -571,3 +578,5 @@ visible = false
 [node name="CharacterInfo" parent="CanvasLayer" instance=ExtResource("17_yaehf")]
 visible = false
 size_flags_vertical = 0
+selected_box = SubResource("StyleBoxFlat_ryguw")
+unselected_box = SubResource("StyleBoxFlat_d13ii")

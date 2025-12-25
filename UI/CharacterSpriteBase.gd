@@ -31,7 +31,7 @@ func attack_focused():
 func attack_target_focus_changed(new_focus : CharacterAgent):
 	pass
 
-func attack_index_changed(new_index : int):
+func attack_index_changed(old_index : int, new_index : int):
 	pass
 
 func attack_defocused():

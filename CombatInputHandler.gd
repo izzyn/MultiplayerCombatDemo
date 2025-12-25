@@ -38,8 +38,12 @@ var focused_target : CharacterAgent:
 
 var attack_index : int:
 	set(value):
+		var old = attack_index
+		attack_index = value
 		if value == attack_index:
 			pass
+		if inputting_character and inputting_character.linked_sprite: 
+			inputting_character.linked_sprite.attack_index_changed(old, value)
 
 var target_index : int
 var character_index : int
@@ -100,21 +104,20 @@ func _input(event: InputEvent) -> void:
 			if selected_attack.target_filter:
 				possible_targets = selected_attack.target_filter.eval(inputting_character, all_characters)
 			else:
-				possible_targets = all_characters
-			attack_index = 0
+				possible_targets = all_characters.duplicate()
+			print(possible_targets.size())
 			if possible_targets.size() == 0:
 				selected_attack = null
+				pass
+			print(possible_targets.size())
 			focused_target = possible_targets[0] 
 		else:
 			selected_character = focused_character
 	if event.is_action_pressed("Escape"):
 		if selected_attack:
 			selected_attack = null
-			for i in selected_targets:
-				if i.linked_sprite:
-					i.linked_sprite.attack_deselected()
-			selected_targets.clear()
-			possible_targets.clear()
+			reset_selections()
+			focused_target = null
 		#elif selected_character:
 			#selected_character = null
 			#attack_index = 0
@@ -126,7 +129,15 @@ func send_input(user : CharacterAgent, action : AttackData, targets : Array[Char
 	result.user = inputting_character.duplicate()
 	result.targets = selected_targets.duplicate_deep()
 	input_sent.emit(result)
+	pass
 
+func reset_selections():
+	for i in selected_targets:
+		if i.linked_sprite:
+			i.linked_sprite.attack_deselected()
+			i.linked_sprite.attack_defocused()
+	selected_targets.clear()
+	possible_targets.clear()
 	pass
 
 func request_input(user : CharacterAgent, characters : Array[CharacterAgent]):
@@ -138,15 +149,11 @@ func request_input(user : CharacterAgent, characters : Array[CharacterAgent]):
 	var result = await input_sent
 	target_index = 0
 	attack_index = 0
+	focused_target = null
 	focused_character = null
 	selected_attack = null
 	selected_character = null
 	input_requested = false
 	inputting_character = null
-	for i in selected_targets:
-		if i.linked_sprite:
-			i.linked_sprite.attack_deselected()
-			i.linked_sprite.attack_defocused()
-	selected_targets.clear()
-	possible_targets.clear()
+	reset_selections()
 	return result

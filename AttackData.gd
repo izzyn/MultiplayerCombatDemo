@@ -65,7 +65,7 @@ func use_attack(user : CharacterAgent, targets : Array[CharacterAgent]):
 			var affected = mod.filter.eval(user, targets)
 			for aff in affected:
 				effectiveness_dict[aff] *= mod.value
-					
+	
 	for target in targets:
 		for status in target.data._statuses:
 			for mod in status.modifiers:

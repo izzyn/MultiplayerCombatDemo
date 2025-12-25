@@ -42,7 +42,20 @@ func character_defocused():
 pass
 
 func attack_target_defocused():
+	print("Defocused")
 	moving_selection.visible = false
+	pass
+
+func attack_index_changed(old : int, new_index : int):
+	var ui_info = get_parent().get_parent().get_node("CanvasLayer/CharacterInfo")
+	var container1 = ui_info.attack_containers[floor(old / ui_info.attack_container_limit)]
+	for i in container1.get_children():
+		if i.actual_index == old:
+			i.get_node("HBoxContainer/ColorRect").visible = false
+	var container2 = ui_info.attack_containers[floor(old / ui_info.attack_container_limit)]
+	for i in container2.get_children():
+		if i.actual_index == new_index:
+			i.get_node("HBoxContainer/ColorRect").visible = true
 	pass
 
 func character_selected():
@@ -56,8 +69,9 @@ func character_selected():
 			instance.visible = false
 			instance.get_node("HBoxContainer/Attack_Name").text = character_agent.data.attacks[attack].name
 			instance.actual_index = attack
+			if attack == 0:
+				instance.get_node("HBoxContainer/ColorRect").visible = true
 			var container = ui_info.attack_containers[floor(attack / ui_info.attack_container_limit)]
-			
 			container.add_child(instance)
 			#container.move_child(instance, 0)
 			instance.get_node("AnimationPlayer").play("Appear")

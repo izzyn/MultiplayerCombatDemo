@@ -22,6 +22,11 @@ var character_icon : TextureRect
 var tracked_character : CharacterData
 
 
+@export
+var selected_box : StyleBoxFlat
+@export
+var unselected_box : StyleBoxFlat
+
 func _process(delta: float) -> void:
 	if tracked_character:
 		health_bar.value = 100 * tracked_character.hp.value / tracked_character.hp.default
