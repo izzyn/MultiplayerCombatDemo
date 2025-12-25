@@ -9,6 +9,7 @@ func start_simulation(participants : Array[CharacterAgent]):
 	 
 	for participant in participants: 
 		participant.reparent(get_node("Participants"))
+		turn_changed.connect(participant.data.turn_changed)
 		
 	while true:
 		var local_participants: Array[CharacterAgent] = []

@@ -18,6 +18,7 @@ var amount : float
 func enact(user : CharacterAgent, target : CharacterAgent, effectiveness : float):
 	var stat = target.data.get(stat_name)
 	var true_amount = amount * effectiveness
+	var old = stat.value
 	if type == Type.Value:
 		if exceed_default:
 			stat.value += true_amount
@@ -26,6 +27,8 @@ func enact(user : CharacterAgent, target : CharacterAgent, effectiveness : float
 	elif type == Type.Default:
 		stat.default += true_amount
 	
-	if true_amount == 0 and target.linked_sprite:
+	if true_amount != 0:
+		target.data.stat_changed(stat_name, old, stat.value)
+	if true_amount != 0 and target.linked_sprite:
 		target.linked_sprite.stat_changed()
 	pass

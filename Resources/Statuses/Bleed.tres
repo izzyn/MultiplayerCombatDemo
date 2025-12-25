@@ -9,4 +9,6 @@
 script = ExtResource("3_40oge")
 id = "Bleed"
 icon = ExtResource("2_40oge")
+duration_on_turn = 1
+duration_on_hit = 1
 metadata/_custom_type_script = "uid://bdb4e3ya8xhhl"

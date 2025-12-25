@@ -42,3 +42,6 @@ func attack_target_selected():
 
 func attack_target_deselected():
 	pass
+
+func stat_changed():
+	pass
