@@ -1,70 +1,21 @@
-[gd_scene load_steps=105 format=3 uid="uid://cqrjaicj4lgbm"]
+[gd_scene load_steps=86 format=3 uid="uid://cqrjaicj4lgbm"]
 
 [ext_resource type="PackedScene" uid="uid://d26jdwk2oi2rp" path="res://character.tscn" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://cgpy04sb2ti5k" path="res://CombatScene.gd" id="1_efxa6"]
-[ext_resource type="Script" uid="uid://dev3bbs8234ul" path="res://AttackData.gd" id="2_5vw27"]
 [ext_resource type="Script" uid="uid://b4isjhai0lxxr" path="res://Data/CharacterAgent.gd" id="2_lswn8"]
 [ext_resource type="Script" uid="uid://ceec6nrspdhes" path="res://DebugCombatStarter.gd" id="2_yaehf"]
-[ext_resource type="Script" uid="uid://chal40igpet32" path="res://Data/Effect/Effect.gd" id="3_kek77"]
 [ext_resource type="Script" uid="uid://cyws6ecggemx3" path="res://Controllers/PlayerController.gd" id="3_vivmo"]
-[ext_resource type="Script" uid="uid://b02gidehqotp1" path="res://Data/Effect/StatChange.gd" id="4_4c57u"]
 [ext_resource type="Script" uid="uid://d0jjmkvmmnkcq" path="res://Camera.gd" id="5_4c57u"]
 [ext_resource type="Script" uid="uid://w7xci5q84hvk" path="res://Data/Stat.gd" id="6_dg77c"]
-[ext_resource type="Script" uid="uid://df3a3xyxvoio3" path="res://Data/Modifier.gd" id="7_2cqfq"]
-[ext_resource type="Script" uid="uid://cvicm6h3smnkv" path="res://Data/ScaleFactor.gd" id="7_vivmo"]
 [ext_resource type="Script" uid="uid://nf1cqa55mvbc" path="res://Data/CharacterData.gd" id="7_ycdy4"]
 [ext_resource type="PackedScene" uid="uid://bkivihrkixbmx" path="res://Selection.tscn" id="9_kek77"]
 [ext_resource type="Script" uid="uid://dr13qsl51h2m1" path="res://Controllers/AIController.gd" id="11_2cqfq"]
-[ext_resource type="Script" uid="uid://dykhrjw5f14x0" path="res://Data/Effect/StatusGrantEffect.gd" id="11_getpj"]
-[ext_resource type="Script" uid="uid://xspn7atwwsb3" path="res://Data/Filters/FilterTeam.gd" id="11_ryguw"]
-[ext_resource type="Texture2D" uid="uid://b8ab8ftgofddp" path="res://icon.svg" id="12_ryguw"]
-[ext_resource type="Script" uid="uid://bdb4e3ya8xhhl" path="res://Data/Effect/Status.gd" id="13_d13ii"]
-[ext_resource type="Script" uid="uid://8pc3rvrfobyj" path="res://Data/secondary_effect.gd" id="13_getpj"]
 [ext_resource type="PackedScene" uid="uid://bulhprrgcwgd6" path="res://orb_gauge.tscn" id="16_2cqfq"]
 [ext_resource type="PackedScene" uid="uid://bua7sd4pea636" path="res://CharacterInfo.tscn" id="17_yaehf"]
 
 [sub_resource type="Resource" id="Resource_getpj"]
 script = ExtResource("3_vivmo")
 metadata/_custom_type_script = "uid://cyws6ecggemx3"
-
-[sub_resource type="Resource" id="Resource_c2n8d"]
-script = ExtResource("4_4c57u")
-stat_name = "hp"
-amount = -10.0
-metadata/_custom_type_script = "uid://b02gidehqotp1"
-
-[sub_resource type="Resource" id="Resource_phcyf"]
-script = ExtResource("11_ryguw")
-inverted = true
-metadata/_custom_type_script = "uid://xspn7atwwsb3"
-
-[sub_resource type="Resource" id="Resource_xko1c"]
-script = ExtResource("2_5vw27")
-name = "Slap"
-type = 1
-hits_all = true
-target_filter = SubResource("Resource_phcyf")
-effects = Array[ExtResource("3_kek77")]([SubResource("Resource_c2n8d")])
-metadata/_custom_type_script = "uid://dev3bbs8234ul"
-
-[sub_resource type="Resource" id="Resource_gx4rg"]
-script = ExtResource("13_d13ii")
-id = "two:)"
-stackable = true
-icon = ExtResource("12_ryguw")
-metadata/_custom_type_script = "uid://bdb4e3ya8xhhl"
-
-[sub_resource type="Resource" id="Resource_5dllo"]
-script = ExtResource("11_getpj")
-status = SubResource("Resource_gx4rg")
-duration = 3
-metadata/_custom_type_script = "uid://dykhrjw5f14x0"
-
-[sub_resource type="Resource" id="Resource_wy5fy"]
-script = ExtResource("2_5vw27")
-name = "bloodslap"
-effects = Array[ExtResource("3_kek77")]([SubResource("Resource_5dllo")])
-metadata/_custom_type_script = "uid://dev3bbs8234ul"
 
 [sub_resource type="Resource" id="Resource_w48qg"]
 script = ExtResource("6_dg77c")
@@ -101,7 +52,7 @@ magic_attack = SubResource("Resource_vivmo")
 normal_defence = SubResource("Resource_074og")
 magic_defence = SubResource("Resource_2cqfq")
 speed = SubResource("Resource_cegan")
-attacks = Array[ExtResource("2_5vw27")]([SubResource("Resource_xko1c"), SubResource("Resource_wy5fy")])
+attack_ids = Array[String](["Slap", "Bleedslap"])
 metadata/_custom_type_script = "uid://nf1cqa55mvbc"
 
 [sub_resource type="Resource" id="Resource_qsp4k"]
@@ -143,33 +94,12 @@ magic_attack = SubResource("Resource_d13ii")
 normal_defence = SubResource("Resource_lswn8")
 magic_defence = SubResource("Resource_1u8w0")
 speed = SubResource("Resource_a6jrf")
-attacks = Array[ExtResource("2_5vw27")]([SubResource("Resource_xko1c")])
+attack_ids = Array[String](["Slap"])
 metadata/_custom_type_script = "uid://nf1cqa55mvbc"
 
 [sub_resource type="Resource" id="Resource_facbu"]
 script = ExtResource("3_vivmo")
 metadata/_custom_type_script = "uid://cyws6ecggemx3"
-
-[sub_resource type="Resource" id="Resource_4obbf"]
-script = ExtResource("4_4c57u")
-stat_name = "hp"
-amount = -10.0
-metadata/_custom_type_script = "uid://b02gidehqotp1"
-
-[sub_resource type="Resource" id="Resource_f1p13"]
-script = ExtResource("11_ryguw")
-inverted = true
-metadata/_custom_type_script = "uid://xspn7atwwsb3"
-
-[sub_resource type="Resource" id="Resource_birbe"]
-script = ExtResource("2_5vw27")
-name = "Glup shitto"
-type = 2
-can_target_multiple_times = true
-target_amount = 2
-target_filter = SubResource("Resource_f1p13")
-effects = Array[ExtResource("3_kek77")]([SubResource("Resource_4obbf")])
-metadata/_custom_type_script = "uid://dev3bbs8234ul"
 
 [sub_resource type="Resource" id="Resource_kq58d"]
 script = ExtResource("6_dg77c")
@@ -206,7 +136,7 @@ magic_attack = SubResource("Resource_seu75")
 normal_defence = SubResource("Resource_4k2k6")
 magic_defence = SubResource("Resource_htxhm")
 speed = SubResource("Resource_0rl1p")
-attacks = Array[ExtResource("2_5vw27")]([SubResource("Resource_xko1c"), SubResource("Resource_birbe")])
+attack_ids = Array[String](["Slap"])
 metadata/_custom_type_script = "uid://nf1cqa55mvbc"
 
 [sub_resource type="Resource" id="Resource_b1qrp"]
@@ -248,7 +178,7 @@ magic_attack = SubResource("Resource_h8e4i")
 normal_defence = SubResource("Resource_d2t1y")
 magic_defence = SubResource("Resource_4lmeg")
 speed = SubResource("Resource_gngh3")
-attacks = Array[ExtResource("2_5vw27")]([SubResource("Resource_xko1c")])
+attack_ids = Array[String](["Slap"])
 metadata/_custom_type_script = "uid://nf1cqa55mvbc"
 
 [sub_resource type="Resource" id="Resource_qnost"]
@@ -289,7 +219,7 @@ magic_attack = SubResource("Resource_4w656")
 normal_defence = SubResource("Resource_vke2r")
 magic_defence = SubResource("Resource_e71vb")
 speed = SubResource("Resource_uit24")
-attacks = Array[ExtResource("2_5vw27")]([SubResource("Resource_xko1c")])
+attack_ids = Array[String](["Slap"])
 metadata/_custom_type_script = "uid://nf1cqa55mvbc"
 
 [sub_resource type="Resource" id="Resource_wnkbs"]
@@ -326,7 +256,7 @@ magic_attack = SubResource("Resource_f6a44")
 normal_defence = SubResource("Resource_uypp3")
 magic_defence = SubResource("Resource_0cbny")
 speed = SubResource("Resource_blkrb")
-attacks = Array[ExtResource("2_5vw27")]([SubResource("Resource_xko1c")])
+attack_ids = Array[String](["Slap"])
 metadata/_custom_type_script = "uid://nf1cqa55mvbc"
 
 [sub_resource type="Resource" id="Resource_rm4vd"]
@@ -363,7 +293,7 @@ magic_attack = SubResource("Resource_pjyto")
 normal_defence = SubResource("Resource_ntx8l")
 magic_defence = SubResource("Resource_sm6fg")
 speed = SubResource("Resource_uatky")
-attacks = Array[ExtResource("2_5vw27")]([SubResource("Resource_xko1c")])
+attack_ids = Array[String](["Slap"])
 metadata/_custom_type_script = "uid://nf1cqa55mvbc"
 
 [sub_resource type="Resource" id="Resource_1vm84"]
@@ -400,7 +330,7 @@ magic_attack = SubResource("Resource_wu3dr")
 normal_defence = SubResource("Resource_jx0wj")
 magic_defence = SubResource("Resource_cyx1q")
 speed = SubResource("Resource_kkkcx")
-attacks = Array[ExtResource("2_5vw27")]([SubResource("Resource_xko1c")])
+attack_ids = Array[String](["Slap"])
 metadata/_custom_type_script = "uid://nf1cqa55mvbc"
 
 [sub_resource type="Gradient" id="Gradient_ig7tw"]

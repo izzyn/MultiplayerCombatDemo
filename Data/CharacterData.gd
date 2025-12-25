@@ -39,7 +39,7 @@ var playstyle : Playstyle
 
 @export_group("","")
 @export
-var attacks : Array[AttackData]
+var attack_ids : Array[String]
 
 var sprite : CharacterSprite
 

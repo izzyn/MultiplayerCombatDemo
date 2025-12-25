@@ -64,11 +64,11 @@ func _input(event: InputEvent) -> void:
 				target_index += 1
 			focused_target = possible_targets[target_index]
 		elif selected_character:
-			if attack_index == selected_character.data.attacks.size()-1:
+			if attack_index == selected_character.data.attack_ids.size()-1:
 				attack_index = 0
 			else:
 				attack_index += 1
-			focused_attack = selected_character.data.attacks[attack_index]
+			focused_attack = GlobalData.attacks[selected_character.data.attack_ids[attack_index]]
 	if event.is_action_pressed("NavigateDown"):
 		if selected_attack:
 			if target_index == 0:
@@ -78,10 +78,10 @@ func _input(event: InputEvent) -> void:
 			focused_target = possible_targets[target_index]
 		elif selected_character:
 			if attack_index == 0:
-				attack_index = selected_character.data.attacks.size()-1
+				attack_index = selected_character.data.attack_ids.size()-1
 			else:
 				attack_index -= 1
-			focused_attack = selected_character.data.attacks[attack_index]
+			focused_attack = GlobalData.attacks[selected_character.data.attack_ids[attack_index]]
 	if event.is_action_pressed("Confirm"):
 		if selected_attack:
 			if selected_attack.hits_all:
@@ -154,7 +154,7 @@ func request_input(user : CharacterAgent, characters : Array[CharacterAgent]):
 	inputting_character = user
 	all_characters = characters
 	selected_character = user
-	focused_attack = user.data.attacks[0]
+	focused_attack = GlobalData.attacks[user.data.attack_ids[0]]
 	var result = await input_sent
 	target_index = 0
 	attack_index = 0

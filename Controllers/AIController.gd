@@ -10,33 +10,34 @@ func request_action(user : CharacterAgent, characters : Array[CharacterAgent]) -
 	var all_characters = characters
 
 	var rng = RandomNumberGenerator.new()
-	for i in user.data.attacks:
+	for attack_id in user.data.attack_ids:
 		var type_mult = 1
+		var attack = GlobalData.attacks[attack_id]
 		if user.data.playstyle == user.data.Playstyle.Attack:
-			if i.type == i.Type.Attack:
+			if attack.type == attack.Type.Attack:
 				type_mult = 2
-			if i.type == i.Type.Debuff:
+			if attack.type == attack.Type.Debuff:
 				type_mult = 1.5
 		elif user.data.playstyle == user.data.Playstyle.Buff:
-			if i.type == i.Type.Buff:
+			if attack.type == attack.Type.Buff:
 				type_mult = 2
-			if i.type == i.Type.Debuff:
+			if attack.type == attack.Type.Debuff:
 				type_mult = 1.5
 		elif user.data.playstyle == user.data.Playstyle.Debuff:
-			if i.type == i.Type.Debuff:
+			if attack.type == attack.Type.Debuff:
 				type_mult = 2
-			if i.type == i.Type.Attack:
+			if attack.type == attack.Type.Attack:
 				type_mult = 1.5
-		var weight = i.base_ai_weight * type_mult * rng.randf_range(1,1.5)
+		var weight = attack.base_ai_weight * type_mult * rng.randf_range(1,1.5)
 		var attack_targets = characters
-		if i.target_filter:
-			attack_targets = i.target_filter.eval(user, characters)
+		if attack.target_filter:
+			attack_targets = attack.target_filter.eval(user, characters)
 		
 		if len(attack_targets) == 0:
 			weight = 0
 		if weight > highest_weight:
 			highest_weight = weight
-			picked_attack = i
+			picked_attack = attack
 	action.action = picked_attack
 	if picked_attack.target_filter:
 		possible_targets = picked_attack.target_filter.eval(user, all_characters)

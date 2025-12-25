@@ -2,7 +2,7 @@ extends Effect
 class_name StatusGrantEffect
 
 @export
-var status : Status
+var status_id : String
 
 ## If -1 (or less than 0 in general) the duration will be forever.
 @export
@@ -24,6 +24,7 @@ func grant_stacks(status: Status, id : int):
 
 func enact(user : CharacterAgent, target : CharacterAgent, effectiveness : float):
 	var attack_id = Helper.get_uuid()
+	var status = GlobalData.statuses[status_id].duplicate_deep()
 	for t_status in target.data._statuses:
 		if t_status.id == status.id:
 			if status.stackable:
@@ -39,6 +40,7 @@ func enact(user : CharacterAgent, target : CharacterAgent, effectiveness : float
 
 func remove_status(target : CharacterAgent, id : int):
 	var found_status
+	var status = GlobalData.statuses[status_id]
 	for t_status in target.data._statuses:
 		if t_status.id == status.id:
 			found_status = t_status

@@ -66,10 +66,10 @@ func character_selected():
 	var attack_ui = get_node("Node/SubViewport/VBoxContainer/Attacks")
 	var ui_info = get_parent().get_parent().get_node("CanvasLayer/CharacterInfo")
 	ui_info.visible = true
-	for attack in range(character_agent.data.attacks.size()):
+	for attack in range(character_agent.data.attack_ids.size()):
 			var instance = preload("res://UI/attack_button.tscn").instantiate()
 			instance.visible = false
-			instance.get_node("HBoxContainer/Attack_Name").text = character_agent.data.attacks[attack].name
+			instance.get_node("HBoxContainer/Attack_Name").text = GlobalData.attacks[character_agent.data.attack_ids[attack]].name
 			instance.actual_index = attack
 			if attack == 0:
 				instance.get_node("HBoxContainer/ColorRect").visible = true
