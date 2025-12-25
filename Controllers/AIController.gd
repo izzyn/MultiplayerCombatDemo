@@ -12,7 +12,7 @@ func request_action(user : CharacterAgent, characters : Array[CharacterAgent]) -
 	var rng = RandomNumberGenerator.new()
 	for attack_id in user.data.attack_ids:
 		var type_mult = 1
-		var attack = GlobalData.attacks[attack_id]
+		var attack = GlobalData.fetch_attack(attack_id)
 		if user.data.playstyle == user.data.Playstyle.Attack:
 			if attack.type == attack.Type.Attack:
 				type_mult = 2

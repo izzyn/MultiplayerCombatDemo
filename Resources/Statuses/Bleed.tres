@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Status" load_steps=5 format=3 uid="uid://cf4kvid6ydr27"]
+
+[ext_resource type="Script" uid="uid://8pc3rvrfobyj" path="res://Data/secondary_effect.gd" id="1_oggq8"]
+[ext_resource type="Texture2D" uid="uid://b8ab8ftgofddp" path="res://icon.svg" id="2_40oge"]
+[ext_resource type="Script" uid="uid://df3a3xyxvoio3" path="res://Data/Modifier.gd" id="2_noqe1"]
+[ext_resource type="Script" uid="uid://bdb4e3ya8xhhl" path="res://Data/StatusEffects/Status.gd" id="3_40oge"]
+
+[resource]
+script = ExtResource("3_40oge")
+id = "Bleed"
+icon = ExtResource("2_40oge")
+metadata/_custom_type_script = "uid://bdb4e3ya8xhhl"

@@ -14,7 +14,11 @@ var amount : int = 1
 func on_status_granted(target : CharacterAgent, caller, id : int):
 	if duration > 0:
 		var timer = CombatSimulator.create_turn_timeout(duration)
+		print("Binding")
+		print(id)
+		
 		timer.timeout.connect(remove_status.bind(target, id))
+		timer.timeout.connect(print.bind("alala"))
 	target.data._statuses_changed.emit()
 	pass
 
@@ -24,7 +28,7 @@ func grant_stacks(status: Status, id : int):
 
 func enact(user : CharacterAgent, target : CharacterAgent, effectiveness : float):
 	var attack_id = Helper.get_uuid()
-	var status = GlobalData.statuses[status_id].duplicate_deep()
+	var status = GlobalData.fetch_status(status_id).duplicate_deep()
 	for t_status in target.data._statuses:
 		if t_status.id == status.id:
 			if status.stackable:
@@ -39,8 +43,9 @@ func enact(user : CharacterAgent, target : CharacterAgent, effectiveness : float
 	pass
 
 func remove_status(target : CharacterAgent, id : int):
+	print("Removing: ")
 	var found_status
-	var status = GlobalData.statuses[status_id]
+	var status = GlobalData.fetch_status(status_id)
 	for t_status in target.data._statuses:
 		if t_status.id == status.id:
 			found_status = t_status

@@ -30,7 +30,6 @@ func eval(actor: CharacterAgent, characters : Array[CharacterAgent]) -> Array[Ch
 	var data : Array[CharacterData] = []
 	for i in characters:
 		data.append(i.data)
-	print(agent_dict)
 	var actual = _data_eval(actor.data, data)
 	for i in actual:
 		result.append(agent_dict[i])

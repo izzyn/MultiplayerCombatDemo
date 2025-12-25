@@ -1,55 +1,6 @@
-[gd_scene load_steps=16 format=3 uid="uid://b4l2iqg50o5t7"]
+[gd_scene load_steps=2 format=3 uid="uid://b4l2iqg50o5t7"]
 
 [ext_resource type="Script" uid="uid://6nlvkv7ihk2l" path="res://global_data.gd" id="1_skedm"]
-[ext_resource type="Script" uid="uid://dev3bbs8234ul" path="res://AttackData.gd" id="3_uldo6"]
-[ext_resource type="Script" uid="uid://8pc3rvrfobyj" path="res://Data/secondary_effect.gd" id="4_oobpn"]
-[ext_resource type="Script" uid="uid://chal40igpet32" path="res://Data/Effect/Effect.gd" id="4_xko1c"]
-[ext_resource type="Script" uid="uid://b02gidehqotp1" path="res://Data/Effect/StatChange.gd" id="5_2a7t3"]
-[ext_resource type="Script" uid="uid://df3a3xyxvoio3" path="res://Data/Modifier.gd" id="6_nbe0f"]
-[ext_resource type="Script" uid="uid://cvicm6h3smnkv" path="res://Data/ScaleFactor.gd" id="7_48yt8"]
-[ext_resource type="Script" uid="uid://dykhrjw5f14x0" path="res://Data/Effect/StatusGrantEffect.gd" id="8_48yt8"]
-[ext_resource type="Script" uid="uid://bdb4e3ya8xhhl" path="res://Data/Effect/Status.gd" id="9_vkuqw"]
-[ext_resource type="Texture2D" uid="uid://b8ab8ftgofddp" path="res://icon.svg" id="10_armbh"]
-
-[sub_resource type="Resource" id="Resource_oobpn"]
-script = ExtResource("5_2a7t3")
-stat_name = "hp"
-amount = -10.0
-metadata/_custom_type_script = "uid://b02gidehqotp1"
-
-[sub_resource type="Resource" id="Resource_y0q0t"]
-script = ExtResource("3_uldo6")
-id = "Slap"
-name = "Slap"
-effects = Array[ExtResource("4_xko1c")]([SubResource("Resource_oobpn")])
-metadata/_custom_type_script = "uid://dev3bbs8234ul"
-
-[sub_resource type="Resource" id="Resource_krlx0"]
-script = ExtResource("8_48yt8")
-status_id = "Bleed"
-duration = 1
-metadata/_custom_type_script = "uid://dykhrjw5f14x0"
-
-[sub_resource type="Resource" id="Resource_2a7t3"]
-script = ExtResource("3_uldo6")
-id = "Bleedslap"
-name = "Bleedslap"
-effects = Array[ExtResource("4_xko1c")]([SubResource("Resource_krlx0")])
-metadata/_custom_type_script = "uid://dev3bbs8234ul"
-
-[sub_resource type="Resource" id="Resource_pqooh"]
-script = ExtResource("9_vkuqw")
-id = "Bleed"
-stackable = true
-icon = ExtResource("10_armbh")
-metadata/_custom_type_script = "uid://bdb4e3ya8xhhl"
 
 [node name="GlobalData" type="Node"]
 script = ExtResource("1_skedm")
-attacks = Dictionary[String, ExtResource("3_uldo6")]({
-"Bleedslap": SubResource("Resource_2a7t3"),
-"Slap": SubResource("Resource_y0q0t")
-})
-statuses = Dictionary[String, ExtResource("9_vkuqw")]({
-"Bleed": SubResource("Resource_pqooh")
-})

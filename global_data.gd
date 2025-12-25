@@ -7,10 +7,8 @@ var characters : Dictionary[String, CharacterData]
 @export
 var enemies : Dictionary[String, CharacterData]
 
+func fetch_attack(path : String) -> AttackData:
+	return load("res://Resources/Attacks/" + path + ".tres")
 
-@export_category("Attacks & Statuses")
-@export
-var attacks : Dictionary[String, AttackData]
-
-@export
-var statuses : Dictionary[String, Status]
+func fetch_status(path : String) -> Status:
+	return load("res://Resources/Statuses/" + path + ".tres")

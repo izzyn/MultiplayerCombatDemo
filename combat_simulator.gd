@@ -22,11 +22,6 @@ func start_simulation(participants : Array[CharacterAgent]):
 			turn_changed.emit(turn)
 		var actor = turn_order.pop_front()
 		var action = await actor.controller.request_action(actor, local_participants)
-		print(actor.controller is AIController)
-		print(action)
-		if action is ActionError:
-			print("ERRROROROROR")
-		print(action.user.controller is AIController)
 		action.action.use_attack(action.user, action.targets)
 	pass
 

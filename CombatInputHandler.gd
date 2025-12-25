@@ -68,7 +68,7 @@ func _input(event: InputEvent) -> void:
 				attack_index = 0
 			else:
 				attack_index += 1
-			focused_attack = GlobalData.attacks[selected_character.data.attack_ids[attack_index]]
+			focused_attack = GlobalData.fetch_attack(selected_character.data.attack_ids[attack_index])
 	if event.is_action_pressed("NavigateDown"):
 		if selected_attack:
 			if target_index == 0:
@@ -81,7 +81,7 @@ func _input(event: InputEvent) -> void:
 				attack_index = selected_character.data.attack_ids.size()-1
 			else:
 				attack_index -= 1
-			focused_attack = GlobalData.attacks[selected_character.data.attack_ids[attack_index]]
+			focused_attack = GlobalData.fetch_attack(selected_character.data.attack_ids[attack_index])
 	if event.is_action_pressed("Confirm"):
 		if selected_attack:
 			if selected_attack.hits_all:
@@ -108,7 +108,6 @@ func _input(event: InputEvent) -> void:
 				possible_targets = selected_attack.target_filter.eval(inputting_character, all_characters)
 			else:
 				possible_targets = all_characters.duplicate()
-			print(possible_targets.size())
 			
 			if selected_attack.hits_all:
 				for i in possible_targets:
@@ -118,7 +117,6 @@ func _input(event: InputEvent) -> void:
 			if possible_targets.size() == 0:
 				selected_attack = null
 				return
-			print(possible_targets.size())
 			focused_target = possible_targets[0] 
 		else:
 			selected_character = focused_character
@@ -154,7 +152,7 @@ func request_input(user : CharacterAgent, characters : Array[CharacterAgent]):
 	inputting_character = user
 	all_characters = characters
 	selected_character = user
-	focused_attack = GlobalData.attacks[user.data.attack_ids[0]]
+	focused_attack = GlobalData.fetch_attack(user.data.attack_ids[0])
 	var result = await input_sent
 	target_index = 0
 	attack_index = 0

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="AttackData" load_steps=8 format=3 uid="uid://d32lbtyc777p5"]
+
+[ext_resource type="Script" uid="uid://8pc3rvrfobyj" path="res://Data/secondary_effect.gd" id="1_3g68l"]
+[ext_resource type="Script" uid="uid://chal40igpet32" path="res://Data/Effect/Effect.gd" id="2_50pkm"]
+[ext_resource type="Script" uid="uid://df3a3xyxvoio3" path="res://Data/Modifier.gd" id="3_8ryyp"]
+[ext_resource type="Script" uid="uid://b02gidehqotp1" path="res://Data/Effect/StatChange.gd" id="3_50pkm"]
+[ext_resource type="Script" uid="uid://cvicm6h3smnkv" path="res://Data/ScaleFactor.gd" id="4_sijjr"]
+[ext_resource type="Script" uid="uid://dev3bbs8234ul" path="res://AttackData.gd" id="5_cs3gk"]
+
+[sub_resource type="Resource" id="Resource_8ryyp"]
+script = ExtResource("3_50pkm")
+stat_name = "hp"
+amount = -10.0
+metadata/_custom_type_script = "uid://b02gidehqotp1"
+
+[resource]
+script = ExtResource("5_cs3gk")
+name = "Slap"
+effects = Array[ExtResource("2_50pkm")]([SubResource("Resource_8ryyp")])
+metadata/_custom_type_script = "uid://dev3bbs8234ul"

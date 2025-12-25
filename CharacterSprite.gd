@@ -44,7 +44,6 @@ func character_defocused():
 pass
 
 func attack_target_defocused():
-	print("Defocused")
 	moving_selection.visible = false
 	pass
 
@@ -61,7 +60,6 @@ func attack_index_changed(old : int, new_index : int):
 	pass
 
 func character_selected():
-	print("Selected")
 	get_node("UI/AnimationPlayer").play("Scale")
 	var attack_ui = get_node("Node/SubViewport/VBoxContainer/Attacks")
 	var ui_info = get_parent().get_parent().get_node("CanvasLayer/CharacterInfo")
@@ -69,7 +67,7 @@ func character_selected():
 	for attack in range(character_agent.data.attack_ids.size()):
 			var instance = preload("res://UI/attack_button.tscn").instantiate()
 			instance.visible = false
-			instance.get_node("HBoxContainer/Attack_Name").text = GlobalData.attacks[character_agent.data.attack_ids[attack]].name
+			instance.get_node("HBoxContainer/Attack_Name").text = GlobalData.fetch_attack(character_agent.data.attack_ids[attack]).name
 			instance.actual_index = attack
 			if attack == 0:
 				instance.get_node("HBoxContainer/ColorRect").visible = true

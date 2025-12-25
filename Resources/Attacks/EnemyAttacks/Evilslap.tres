@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="AttackData" load_steps=6 format=3 uid="uid://14hcie5qlmr6"]
+
+[ext_resource type="Script" uid="uid://8pc3rvrfobyj" path="res://Data/secondary_effect.gd" id="1_qsh42"]
+[ext_resource type="Script" uid="uid://chal40igpet32" path="res://Data/Effect/Effect.gd" id="2_knqn1"]
+[ext_resource type="Script" uid="uid://df3a3xyxvoio3" path="res://Data/Modifier.gd" id="3_xsvst"]
+[ext_resource type="Script" uid="uid://cvicm6h3smnkv" path="res://Data/ScaleFactor.gd" id="4_77ejf"]
+[ext_resource type="Script" uid="uid://dev3bbs8234ul" path="res://AttackData.gd" id="5_q7pji"]
+
+[resource]
+script = ExtResource("5_q7pji")
+name = "Evilslap"
+metadata/_custom_type_script = "uid://dev3bbs8234ul"

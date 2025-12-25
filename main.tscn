@@ -52,7 +52,7 @@ magic_attack = SubResource("Resource_vivmo")
 normal_defence = SubResource("Resource_074og")
 magic_defence = SubResource("Resource_2cqfq")
 speed = SubResource("Resource_cegan")
-attack_ids = Array[String](["Slap", "Bleedslap"])
+attack_ids = Array[String](["Slap", "EnemyAttacks/Evilslap", "Bleedslap"])
 metadata/_custom_type_script = "uid://nf1cqa55mvbc"
 
 [sub_resource type="Resource" id="Resource_qsp4k"]
