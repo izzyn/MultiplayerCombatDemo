@@ -4,7 +4,7 @@ class_name CharacterSprite
 @export
 var flipped_text : bool
 
-var selection : Node3D
+var selections : Array[Node3D]
 @export_group("Screen Shake")
 @export
 var start_ui_shake_strength : float = 50
@@ -17,14 +17,16 @@ var oldhp = -1
 var moving_selection = get_parent().get_parent().get_node("Selection")
 
 func attack_target_selected():
-	selection = preload("res://Selection.tscn").instantiate()
+	var selection = preload("res://Selection.tscn").instantiate()
 	get_parent().get_parent().get_node("Selections").add_child(selection)
 	selection.position = global_position
 	selection.target = self
+	selections.append(selection)
 
 func attack_target_deselected():
 	print("A")
-	selection.queue_free()
+	selections[0].queue_free()
+	selections.remove_at(0)
 pass
 
 func attack_target_focused():

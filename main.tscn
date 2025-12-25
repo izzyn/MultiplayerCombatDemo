@@ -42,6 +42,7 @@ metadata/_custom_type_script = "uid://xspn7atwwsb3"
 script = ExtResource("2_5vw27")
 name = "Slap"
 type = 1
+hits_all = true
 target_filter = SubResource("Resource_phcyf")
 effects = Array[ExtResource("3_kek77")]([SubResource("Resource_c2n8d")])
 metadata/_custom_type_script = "uid://dev3bbs8234ul"

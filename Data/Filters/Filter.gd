@@ -9,26 +9,29 @@ func _eval(actor: CharacterData, characters : Array[CharacterData]) -> Array[Cha
 	return []
 	pass
 
+func _data_eval(actor: CharacterData, characters : Array[CharacterData]) -> Array[CharacterData]:
+	var filtered = _eval(actor, characters)
+	var actual : Array[CharacterData] = []
+	if inverted:
+		for i in characters:
+			if i not in filtered:
+				actual.append(i)
+	else:
+		actual = filtered
+	if !can_target_dead:
+		actual = actual.filter(func(x): return x.hp.value > 0)
+	return actual
+	
 func eval(actor: CharacterAgent, characters : Array[CharacterAgent]) -> Array[CharacterAgent]:
 	var agent_dict : Dictionary[CharacterData, CharacterAgent] = {}
+	var result : Array[CharacterAgent] = []
 	for agent in characters:
 		agent_dict[agent.data] = agent
 	var data : Array[CharacterData] = []
 	for i in characters:
 		data.append(i.data)
 	print(agent_dict)
-	var filtered = _eval(actor.data, data)
-	var actual : Array[CharacterData] = []
-	var result : Array[CharacterAgent] = []
-	if inverted:
-		for i in data:
-			if i not in filtered:
-				actual.append(i)
-	else:
-		actual = filtered
-	
-	if !can_target_dead:
-		actual = actual.filter(func(x): return x.hp.value > 0)
+	var actual = _data_eval(actor.data, data)
 	for i in actual:
 		result.append(agent_dict[i])
 	return result

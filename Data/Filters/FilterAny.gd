@@ -8,9 +8,8 @@ func _eval(actor : CharacterData, characters : Array[CharacterData]) -> Array[Ch
 	var list : Array[CharacterData] = []
 	
 	for i in filters:
-		var filtered_list = i.eval(actor, characters)
+		var filtered_list = i._data_eval(actor, characters)
 		for j in filtered_list:
 			if j not in list:
 				list.append(j)
 	return list
-	pass

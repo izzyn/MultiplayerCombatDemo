@@ -84,12 +84,15 @@ func _input(event: InputEvent) -> void:
 			focused_attack = selected_character.data.attacks[attack_index]
 	if event.is_action_pressed("Confirm"):
 		if selected_attack:
+			if selected_attack.hits_all:
+				send_input(inputting_character, selected_attack, selected_targets)
+				return
 			selected_targets.append(focused_target)
 			if focused_target.linked_sprite:
-				focused_target.linked_sprite.attack_selected()
+				focused_target.linked_sprite.attack_target_selected()
 			if selected_targets.size() == selected_attack.target_amount:
 				send_input(inputting_character, selected_attack, selected_targets)
-				pass
+				return
 			else:
 				if !selected_attack.can_target_multiple_times:
 					if possible_targets.find(focused_target) == possible_targets.size()-1:
@@ -97,7 +100,7 @@ func _input(event: InputEvent) -> void:
 					possible_targets.erase(focused_target)
 					if possible_targets.size() == 0:
 						send_input(inputting_character, selected_attack, selected_targets)
-						pass
+						return
 					focused_target = possible_targets[attack_index]
 		elif selected_character:
 			selected_attack = focused_attack
@@ -106,9 +109,15 @@ func _input(event: InputEvent) -> void:
 			else:
 				possible_targets = all_characters.duplicate()
 			print(possible_targets.size())
+			
+			if selected_attack.hits_all:
+				for i in possible_targets:
+					selected_targets.append(i)
+					if i.linked_sprite:
+						i.linked_sprite.attack_target_selected()
 			if possible_targets.size() == 0:
 				selected_attack = null
-				pass
+				return
 			print(possible_targets.size())
 			focused_target = possible_targets[0] 
 		else:
@@ -134,8 +143,8 @@ func send_input(user : CharacterAgent, action : AttackData, targets : Array[Char
 func reset_selections():
 	for i in selected_targets:
 		if i.linked_sprite:
-			i.linked_sprite.attack_deselected()
-			i.linked_sprite.attack_defocused()
+			i.linked_sprite.attack_target_defocused()
+			i.linked_sprite.attack_target_deselected()
 	selected_targets.clear()
 	possible_targets.clear()
 	pass
