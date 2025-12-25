@@ -42,6 +42,7 @@ var effects : Array[Effect]
 @export_group("Extra effects")
 @export
 var additional_effects : Array[SecondaryEffect]
+
 ## Modifiers in this field can only be offensive, defensive modifiers in this field will simply work asif disabled.
 @export
 var modifiers : Array[Modifier]
@@ -75,9 +76,14 @@ func use_attack(user : CharacterAgent, targets : Array[CharacterAgent]):
 					var use = len(mod.filter.eval(target, arr)) == 1
 					if use: effectiveness_dict[target] *= mod.value
 	
+	var base_effects : Array[Effect] = []
+	base_effects.append_array(effects)
+	for secondary_effect in additional_effects:
+		if user in secondary_effect.condition.eval(user, [user]):
+			base_effects.append_array(secondary_effect.effects)
 	for target in targets:
 		var total_effects : Array[Effect] = []
-		total_effects.append_array(effects)
+		total_effects.append_array(base_effects)
 		for status in user.data._statuses:
 			if status.additional_effect:
 				for effect in status.additional_effect:

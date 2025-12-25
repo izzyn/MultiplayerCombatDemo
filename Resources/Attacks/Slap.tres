@@ -1,11 +1,30 @@
-[gd_resource type="Resource" script_class="AttackData" load_steps=8 format=3 uid="uid://d32lbtyc777p5"]
+[gd_resource type="Resource" script_class="AttackData" load_steps=14 format=3 uid="uid://d32lbtyc777p5"]
 
 [ext_resource type="Script" uid="uid://8pc3rvrfobyj" path="res://Data/secondary_effect.gd" id="1_3g68l"]
+[ext_resource type="Script" uid="uid://cin3wmw6waei1" path="res://Data/Filters/FilterTag.gd" id="2_0yjs5"]
 [ext_resource type="Script" uid="uid://chal40igpet32" path="res://Data/Effect/Effect.gd" id="2_50pkm"]
 [ext_resource type="Script" uid="uid://df3a3xyxvoio3" path="res://Data/Modifier.gd" id="3_8ryyp"]
 [ext_resource type="Script" uid="uid://b02gidehqotp1" path="res://Data/Effect/StatChange.gd" id="3_50pkm"]
 [ext_resource type="Script" uid="uid://cvicm6h3smnkv" path="res://Data/ScaleFactor.gd" id="4_sijjr"]
 [ext_resource type="Script" uid="uid://dev3bbs8234ul" path="res://AttackData.gd" id="5_cs3gk"]
+[ext_resource type="Script" uid="uid://p5ifm2jhmsds" path="res://Data/Filters/FilterBlank.gd" id="8_o6o8u"]
+
+[sub_resource type="Resource" id="Resource_o6o8u"]
+script = ExtResource("2_0yjs5")
+tag_name = "sigma"
+metadata/_custom_type_script = "uid://cin3wmw6waei1"
+
+[sub_resource type="Resource" id="Resource_0yjs5"]
+script = ExtResource("3_50pkm")
+stat_name = "hp"
+amount = -100.0
+metadata/_custom_type_script = "uid://b02gidehqotp1"
+
+[sub_resource type="Resource" id="Resource_lunyg"]
+script = ExtResource("1_3g68l")
+condition = SubResource("Resource_o6o8u")
+effects = Array[ExtResource("2_50pkm")]([SubResource("Resource_0yjs5")])
+metadata/_custom_type_script = "uid://8pc3rvrfobyj"
 
 [sub_resource type="Resource" id="Resource_8ryyp"]
 script = ExtResource("3_50pkm")
@@ -13,8 +32,14 @@ stat_name = "hp"
 amount = -10.0
 metadata/_custom_type_script = "uid://b02gidehqotp1"
 
+[sub_resource type="Resource" id="Resource_0wwq5"]
+script = ExtResource("8_o6o8u")
+metadata/_custom_type_script = "uid://p5ifm2jhmsds"
+
 [resource]
 script = ExtResource("5_cs3gk")
 name = "Slap"
+target_filter = SubResource("Resource_0wwq5")
 effects = Array[ExtResource("2_50pkm")]([SubResource("Resource_8ryyp")])
+additional_effects = Array[ExtResource("1_3g68l")]([SubResource("Resource_lunyg")])
 metadata/_custom_type_script = "uid://dev3bbs8234ul"

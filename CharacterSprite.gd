@@ -24,7 +24,6 @@ func attack_target_selected():
 	selections.append(selection)
 
 func attack_target_deselected():
-	print("A")
 	selections[0].queue_free()
 	selections.remove_at(0)
 pass

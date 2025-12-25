@@ -37,6 +37,10 @@ var targetability_factor : float = 1
 enum Playstyle {Buff, Debuff, Attack}
 var playstyle : Playstyle
 
+@export_group("Tags")
+@export
+var tags : Array[Tag]
+
 @export_group("","")
 @export
 var attack_ids : Array[String]
@@ -94,3 +98,20 @@ func turn_changed(turn : int):
 		_statuses.erase(i)
 		_statuses_changed.emit()
 	pass
+
+func get_tags() -> Array[Tag]:
+	var processed_tags : Array[Tag] = []
+	var status_tags : Array[Tag] = []
+	for i in _statuses:
+		if !i.tag_overrides:
+			continue
+		status_tags.append_array(i.tag_overrides)
+	processed_tags.append_array(status_tags)
+	for i in tags:
+		var dupe = false
+		for j in status_tags:
+			if i.tag_group == j.tag_group and j.tag_group != "":
+				dupe=true
+		if !dupe:
+			processed_tags.append(i)
+	return processed_tags

@@ -1,14 +1,21 @@
-[gd_resource type="Resource" script_class="Status" load_steps=5 format=3 uid="uid://cf4kvid6ydr27"]
+[gd_resource type="Resource" script_class="Status" load_steps=7 format=3 uid="uid://cf4kvid6ydr27"]
 
 [ext_resource type="Script" uid="uid://8pc3rvrfobyj" path="res://Data/secondary_effect.gd" id="1_oggq8"]
 [ext_resource type="Texture2D" uid="uid://b8ab8ftgofddp" path="res://icon.svg" id="2_40oge"]
 [ext_resource type="Script" uid="uid://df3a3xyxvoio3" path="res://Data/Modifier.gd" id="2_noqe1"]
 [ext_resource type="Script" uid="uid://bdb4e3ya8xhhl" path="res://Data/StatusEffects/Status.gd" id="3_40oge"]
+[ext_resource type="Script" uid="uid://cg4yksv2p2jv2" path="res://Data/Tag.gd" id="5_40oge"]
+
+[sub_resource type="Resource" id="Resource_hh14c"]
+script = ExtResource("5_40oge")
+tag_name = "test"
+metadata/_custom_type_script = "uid://cg4yksv2p2jv2"
 
 [resource]
 script = ExtResource("3_40oge")
 id = "Bleed"
 icon = ExtResource("2_40oge")
+tag_overrides = Array[ExtResource("5_40oge")]([SubResource("Resource_hh14c")])
 duration_on_turn = 1
 duration_on_hit = 1
 metadata/_custom_type_script = "uid://bdb4e3ya8xhhl"

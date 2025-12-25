@@ -22,6 +22,9 @@ var additional_effect : Array[SecondaryEffect]
 @export
 var icon : Texture2D
 
+@export
+var tag_overrides : Array[Tag]
+
 @export_category("Duration")
 
 @export

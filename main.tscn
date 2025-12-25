@@ -1,4 +1,4 @@
-[gd_scene load_steps=86 format=3 uid="uid://cqrjaicj4lgbm"]
+[gd_scene load_steps=88 format=3 uid="uid://cqrjaicj4lgbm"]
 
 [ext_resource type="PackedScene" uid="uid://d26jdwk2oi2rp" path="res://character.tscn" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://cgpy04sb2ti5k" path="res://CombatScene.gd" id="1_efxa6"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://cyws6ecggemx3" path="res://Controllers/PlayerController.gd" id="3_vivmo"]
 [ext_resource type="Script" uid="uid://d0jjmkvmmnkcq" path="res://Camera.gd" id="5_4c57u"]
 [ext_resource type="Script" uid="uid://w7xci5q84hvk" path="res://Data/Stat.gd" id="6_dg77c"]
+[ext_resource type="Script" uid="uid://cg4yksv2p2jv2" path="res://Data/Tag.gd" id="7_w48qg"]
 [ext_resource type="Script" uid="uid://nf1cqa55mvbc" path="res://Data/CharacterData.gd" id="7_ycdy4"]
 [ext_resource type="PackedScene" uid="uid://bkivihrkixbmx" path="res://Selection.tscn" id="9_kek77"]
 [ext_resource type="Script" uid="uid://dr13qsl51h2m1" path="res://Controllers/AIController.gd" id="11_2cqfq"]
@@ -41,6 +42,11 @@ metadata/_custom_type_script = "uid://w7xci5q84hvk"
 script = ExtResource("6_dg77c")
 metadata/_custom_type_script = "uid://w7xci5q84hvk"
 
+[sub_resource type="Resource" id="Resource_ycdy4"]
+script = ExtResource("7_w48qg")
+tag_name = "sigma"
+metadata/_custom_type_script = "uid://cg4yksv2p2jv2"
+
 [sub_resource type="Resource" id="Resource_82xsv"]
 script = ExtResource("7_ycdy4")
 id = "test"
@@ -52,6 +58,7 @@ magic_attack = SubResource("Resource_vivmo")
 normal_defence = SubResource("Resource_074og")
 magic_defence = SubResource("Resource_2cqfq")
 speed = SubResource("Resource_cegan")
+tags = Array[ExtResource("7_w48qg")]([SubResource("Resource_ycdy4")])
 attack_ids = Array[String](["Slap", "EnemyAttacks/Evilslap", "Bleedslap"])
 metadata/_custom_type_script = "uid://nf1cqa55mvbc"
 
